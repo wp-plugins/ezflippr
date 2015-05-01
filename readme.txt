@@ -58,6 +58,9 @@ This section describes how to install the plugin and get it working.
 Yes, this plugin will be translated to french and spanish shortly. If you want to help with translation in other languages, we'll be happy to hear from you.
 
 == Changelog ==
+= 1.0 =
+* First stable version.
+
 = 0.0.1 =
 * First released version. Tested internally with about 10 sites.
 
