@@ -3,7 +3,7 @@
 * Plugin Name: ezFlippr
 * Plugin URI: http://www.nuagelab.com/wordpress-plugins/ezflippr
 * Description: Adds rich flipbooks made from PDF through ezFlippr.com
-* Version: 1.1.1
+* Version: 1.1.2
 * Author: NuageLab <wordpress-plugins@nuagelab.com>
 * Author URI: http://www.nuagelab.com/wordpress-plugins
 * License: GPL2
@@ -101,9 +101,15 @@ class ezFlippr{
 	public function ezflippr_admin_head()
 	{
 		if ('ezflippr_flipbook' == get_post_type()) {
-			echo '<style type="text/css">';
-            echo '.add-new-h2{display:none;}';
-            echo '</style>';
+			echo '<style type="text/css">'.PHP_EOL;
+            echo '.add-new-h2{display:none;}'.PHP_EOL;
+            echo '</style>'.PHP_EOL;
+			echo '<script>'.PHP_EOL;
+			echo 'ez_str_installing = "'.__('Installing...',__EZFLIPPR_PLUGIN_SLUG__).'";'.PHP_EOL;
+			echo 'ez_str_reinstalling = "'.__('Reinstalling...',__EZFLIPPR_PLUGIN_SLUG__).'";'.PHP_EOL;
+			echo 'ez_str_uninstalling = "'.__('Uninstalling...',__EZFLIPPR_PLUGIN_SLUG__).'";'.PHP_EOL;
+			echo 'ez_str_please_wait = "'.__('Please wait...',__EZFLIPPR_PLUGIN_SLUG__).'";'.PHP_EOL;
+			echo '</script>'.PHP_EOL;
 		}
 	}
 
@@ -152,7 +158,7 @@ class ezFlippr{
             self::saveSettings();
             $accessKey  = $_POST['ezflippr-field-key'];
 
-            if ((!$_POST['ezflippr-field-havekey']) && (isset($_POST['ezflippr-field-email']))) {
+            if ((!@$_POST['ezflippr-field-havekey']) && (isset($_POST['ezflippr-field-email']))) {
                 $this->sendAccessKey($_POST['ezflippr-field-email']);
             }
         } else if(isset($_POST['ezflippr-refresh']) && wp_verify_nonce($_POST['nonce'], $_POST['action'])) {
@@ -316,15 +322,15 @@ class ezFlippr{
 					echo ' | ';
 					printf('<a href="%1$s">%2$s</a>', get_permalink($id), __('View', __EZFLIPPR_PLUGIN_SLUG__));
 					echo ' | ';
-					printf('<a href="%1$s">%2$s</a>', __EZFLIPPR_RESOURCES__ . 'install.php?post=' . $id . '&action=uninstall', __('Uninstall', __EZFLIPPR_PLUGIN_SLUG__));
+					printf('<a class="ez-btn-uninstall" href="%1$s">%2$s</a>', __EZFLIPPR_RESOURCES__ . 'install.php?post=' . $id . '&action=uninstall', __('Uninstall', __EZFLIPPR_PLUGIN_SLUG__));
 					if (self::getPostMeta($id, 'status') < 90) {
 						echo ' | ';
-						printf( '<a href="%1$s">%2$s</a>', __EZFLIPPR_RESOURCES__ . 'install.php?post=' . $id . '&action=reinstall', __( 'Reinstall', __EZFLIPPR_PLUGIN_SLUG__ ) );
+						printf( '<a class="ez-btn-reinstall" href="%1$s">%2$s</a>', __EZFLIPPR_RESOURCES__ . 'install.php?post=' . $id . '&action=reinstall', __( 'Reinstall', __EZFLIPPR_PLUGIN_SLUG__ ) );
 					}
 				} else {
 					if (self::getPostMeta($id, 'status') < 90) {
 						echo ' | ';
-						printf( '<a href="%1$s">%2$s</a>', __EZFLIPPR_RESOURCES__ . 'install.php?post=' . $id . '&action=install', __( 'Install', __EZFLIPPR_PLUGIN_SLUG__ ) );
+						printf( '<a class="ez-btn-install" href="%1$s">%2$s</a>', __EZFLIPPR_RESOURCES__ . 'install.php?post=' . $id . '&action=install', __( 'Install', __EZFLIPPR_PLUGIN_SLUG__ ) );
 					}
                 }
 

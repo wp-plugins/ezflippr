@@ -4,9 +4,15 @@ require_once __DIR__ . "/../ezflippr.php";
 
 $postID     = $_GET['post'];
 if ($_GET['action'] == 'reinstall') {
-	ezFlippr::installFlipbook($postID, false);
-	ezFlippr::installFlipbook($postID, true);
+	$res = ezFlippr::installFlipbook($postID, false);
+	$res = ezFlippr::installFlipbook($postID, true);
 } else {
-	ezFlippr::installFlipbook($postID, $_GET['action'] == 'install');
+	$res = ezFlippr::installFlipbook($postID, $_GET['action'] == 'install');
 }
-wp_safe_redirect(admin_url( 'edit.php?post_type=ezflippr_flipbook' ));
+
+if ((array_key_exists('json', $_GET)) && ($_GET['json'])) {
+	header('Content-Type: application/json');
+	echo json_encode(array('result'=>$res));
+} else {
+	wp_safe_redirect( admin_url( 'edit.php?post_type=ezflippr_flipbook' ) );
+}

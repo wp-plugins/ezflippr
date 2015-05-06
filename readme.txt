@@ -87,20 +87,32 @@ CURL is installed by default with MAMP.
 Yes, this plugin will be translated to french and spanish shortly. If you want to help with translation in other languages, we'll be happy to hear from you.
 
 == Changelog ==
-= 0.0.1 =
-* First released version. Tested internally with about 10 sites.
+= 1.1.2 =
+* Added AJAX install/reinstall/uninstall
 
-= 1.0 =
-* First stable version.
+= 1.1.1 =
+* Fixed early call to is_admin() causing a bug in the admin once in a while
 
 = 1.1 =
 * Added notice when flipbooks are modified/bought
 * Moved flush_rewrite_rules to activation hook rather than registration
 
+= 1.0 =
+* First stable version.
+
+= 0.0.1 =
+* First released version. Tested internally with about 10 sites.
+
+== Upgrade Notice ==
+= 1.1.2 =
+* Added AJAX install/reinstall/uninstall
+
 = 1.1.1 =
 * Fixed early call to is_admin() causing a bug in the admin once in a while
 
-== Upgrade Notice ==
+= 1.1 =
+* Added notice when flipbooks are modified/bought
+* Moved flush_rewrite_rules to activation hook rather than registration
 
 == Translations ==
 

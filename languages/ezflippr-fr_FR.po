@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Auto Domain Changer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-06 11:10-0500\n"
-"PO-Revision-Date: 2015-05-06 11:12-0500\n"
+"POT-Creation-Date: 2015-05-06 12:54-0500\n"
+"PO-Revision-Date: 2015-05-06 12:55-0500\n"
 "Last-Translator: Tommy Lacroix <tlacroix@nuagelab.com>\n"
 "Language-Team: NuageLab <wordpress-plugins@nuagelab.com>\n"
 "Language: fr_FR\n"
@@ -23,7 +23,23 @@ msgstr ""
 "X-Poedit-KeywordsList: __;_e;_n\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../ezflippr.php:145
+#: ../ezflippr.php:108
+msgid "Installing..."
+msgstr "Installation en cours..."
+
+#: ../ezflippr.php:109
+msgid "Reinstalling..."
+msgstr "Réinstallation en cours..."
+
+#: ../ezflippr.php:110
+msgid "Uninstalling..."
+msgstr "Désinstallation en cours..."
+
+#: ../ezflippr.php:111
+msgid "Please wait..."
+msgstr "Veuillez patienter..."
+
+#: ../ezflippr.php:135
 #, php-format
 msgid ""
 "Your flipbook named \"<a target=\"_blank\" href=\"%4$s\">%1$s</a>\" has been "
@@ -32,7 +48,7 @@ msgstr ""
 "Votre flip book intitulé \"<a target=\"_blank\" href=\"%4$s\">%1$s</a>\" a "
 "été modifié."
 
-#: ../ezflippr.php:146
+#: ../ezflippr.php:136
 #, php-format
 msgid ""
 "Your flipbook named \"<a target=\"_blank\" href=\"%4$s\">%1$s</a>\" has been "
@@ -41,7 +57,7 @@ msgstr ""
 "Votre flip book intitulé \"<a target=\"_blank\" href=\"%4$s\">%1$s</a>\" a "
 "été acheté."
 
-#: ../ezflippr.php:147
+#: ../ezflippr.php:137
 #, php-format
 msgid ""
 "<a href=\"%2$s\">Click here</a> to reinstall it, or <a href=\"%3$s\">here to "
@@ -50,141 +66,141 @@ msgstr ""
 "<a href=\"%2$s\">Cliquez ici</a> pour le réinstaller, ou <a href=\"%3$s"
 "\">ici pour cacher cette notification</a>."
 
-#: ../ezflippr.php:179
+#: ../ezflippr.php:169
 msgid "The access key you entered is invalid"
 msgstr "La clé d'accès que vous avez entrée est invalide."
 
-#: ../ezflippr.php:225 ../ezflippr.php:235
+#: ../ezflippr.php:215 ../ezflippr.php:225
 msgid "Flipbooks"
 msgstr "Flip books"
 
-#: ../ezflippr.php:226
+#: ../ezflippr.php:216
 msgid "Flipbook"
 msgstr "Flip book"
 
-#: ../ezflippr.php:227 ../ezflippr.php:312
+#: ../ezflippr.php:217 ../ezflippr.php:319
 msgid "Edit"
 msgstr "Modifier"
 
-#: ../ezflippr.php:228
+#: ../ezflippr.php:218
 msgid "Edit Flipbook"
 msgstr "Modifier le flip book"
 
-#: ../ezflippr.php:229 ../ezflippr.php:316
+#: ../ezflippr.php:219 ../ezflippr.php:323
 msgid "View"
 msgstr "Voir"
 
-#: ../ezflippr.php:230
+#: ../ezflippr.php:220
 msgid "View Flipbook"
 msgstr "Voir le flip book"
 
-#: ../ezflippr.php:231
+#: ../ezflippr.php:221
 msgid "No Flipbooks found"
 msgstr "Aucun flip book trouvé"
 
-#: ../ezflippr.php:232
+#: ../ezflippr.php:222
 msgid "No Flipbooks found in Trash"
 msgstr "Aucun flip book dans la corbeille"
 
-#: ../ezflippr.php:250
+#: ../ezflippr.php:240
 msgid "Flipbooks imported from ezFlippr.com"
 msgstr "Flip books importés de ezFlippr.com"
 
-#: ../ezflippr.php:285
+#: ../ezflippr.php:292
 msgid "Status"
 msgstr "Statut"
 
-#: ../ezflippr.php:286
+#: ../ezflippr.php:293
 msgid "Actions"
 msgstr "Actions"
 
-#: ../ezflippr.php:300
+#: ../ezflippr.php:307
 msgid "Installed"
 msgstr "Installé"
 
-#: ../ezflippr.php:305
+#: ../ezflippr.php:312
 msgid "Not installed"
 msgstr "Non installé"
 
-#: ../ezflippr.php:307
+#: ../ezflippr.php:314
 msgid "Expired"
 msgstr "Expiré"
 
-#: ../ezflippr.php:318
+#: ../ezflippr.php:325
 msgid "Uninstall"
 msgstr "Désinstaller"
 
-#: ../ezflippr.php:321
+#: ../ezflippr.php:328
 msgid "Reinstall"
 msgstr "Réinstaller"
 
-#: ../ezflippr.php:326
+#: ../ezflippr.php:333
 msgid "Install"
 msgstr "Installer"
 
-#: ../ezflippr.php:332
+#: ../ezflippr.php:339
 msgid "Customize"
 msgstr "Personnaliser"
 
-#: ../ezflippr.php:335
+#: ../ezflippr.php:342
 msgid "Buy"
 msgstr "Acheter"
 
-#: ../ezflippr.php:387
+#: ../ezflippr.php:394
 msgid "No ID"
 msgstr "Pas d'identifiant"
 
-#: ../ezflippr.php:411
+#: ../ezflippr.php:418
 msgid "Please enable JavaScript"
 msgstr "Veuillez activer le JavaScript"
 
-#: ../ezflippr.php:507
+#: ../ezflippr.php:514
 msgid "No communication methods supported. Install php_curl"
 msgstr "Aucune méthode de communication. Installez php_curl."
 
-#: ../ezflippr.php:528
+#: ../ezflippr.php:535
 msgid "Check your email, your access key has been sent!"
 msgstr "Vérifiez vos emails, votre clé d'accès a été envoyée!"
 
-#: ../ezflippr.php:704
+#: ../ezflippr.php:711
 #, php-format
 msgid "%d years ago"
 msgstr "il y a %d années"
 
-#: ../ezflippr.php:707
+#: ../ezflippr.php:714
 #, php-format
 msgid "%d months ago"
 msgstr "il y a %d mois"
 
-#: ../ezflippr.php:708
+#: ../ezflippr.php:715
 #, php-format
 msgid "%d weeks ago"
 msgstr "il y a %d semaines"
 
-#: ../ezflippr.php:709
+#: ../ezflippr.php:716
 #, php-format
 msgid "%d days ago"
 msgstr "il y a %d jours"
 
-#: ../ezflippr.php:710
+#: ../ezflippr.php:717
 #, php-format
 msgid "%d hours ago"
 msgstr "il y a %d heures"
 
-#: ../ezflippr.php:711
+#: ../ezflippr.php:718
 #, php-format
 msgid "%d minutes ago"
 msgstr "il y a %d minutes"
 
-#: ../ezflippr.php:712
+#: ../ezflippr.php:719
 msgid "moments ago"
 msgstr "il y a un moment"
 
-#: ../ezflippr.php:714
+#: ../ezflippr.php:721
 msgid "Never"
 msgstr "Jamais"
 
-#: ../ezflippr.php:716
+#: ../ezflippr.php:723
 #, php-format
 msgid "Your flipbooks list was last refreshed %1$s."
 msgstr "Votre liste de flip books a été rafraichie %1$s."
