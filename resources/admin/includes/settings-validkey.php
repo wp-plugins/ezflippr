@@ -3,11 +3,11 @@
 <div class="wrap">
 <?php
     $formAction = "ezflippr-settings+" . uniqid();
-    if($this->error){
+    if($this->error):
 ?>
     <div class="error"><?php echo $this->error;?></div>
 <?php
-    }
+    endif;
     $email      = get_option('admin_email');
 ?>
 <form method="post" name="" action="">

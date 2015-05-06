@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Auto Domain Changer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-27 11:01-0500\n"
-"PO-Revision-Date: 2015-04-27 11:20-0500\n"
+"POT-Creation-Date: 2015-05-06 11:10-0500\n"
+"PO-Revision-Date: 2015-05-06 11:12-0500\n"
 "Last-Translator: Tommy Lacroix <tlacroix@nuagelab.com>\n"
 "Language-Team: NuageLab <wordpress-plugins@nuagelab.com>\n"
 "Language: fr_FR\n"
@@ -23,137 +23,168 @@ msgstr ""
 "X-Poedit-KeywordsList: __;_e;_n\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../ezflippr.php:122
+#: ../ezflippr.php:145
+#, php-format
+msgid ""
+"Your flipbook named \"<a target=\"_blank\" href=\"%4$s\">%1$s</a>\" has been "
+"modified."
+msgstr ""
+"Votre flip book intitulé \"<a target=\"_blank\" href=\"%4$s\">%1$s</a>\" a "
+"été modifié."
+
+#: ../ezflippr.php:146
+#, php-format
+msgid ""
+"Your flipbook named \"<a target=\"_blank\" href=\"%4$s\">%1$s</a>\" has been "
+"purchased."
+msgstr ""
+"Votre flip book intitulé \"<a target=\"_blank\" href=\"%4$s\">%1$s</a>\" a "
+"été acheté."
+
+#: ../ezflippr.php:147
+#, php-format
+msgid ""
+"<a href=\"%2$s\">Click here</a> to reinstall it, or <a href=\"%3$s\">here to "
+"dismiss this notice</a>."
+msgstr ""
+"<a href=\"%2$s\">Cliquez ici</a> pour le réinstaller, ou <a href=\"%3$s"
+"\">ici pour cacher cette notification</a>."
+
+#: ../ezflippr.php:179
 msgid "The access key you entered is invalid"
 msgstr "La clé d'accès que vous avez entrée est invalide."
 
-#: ../ezflippr.php:165 ../ezflippr.php:175
+#: ../ezflippr.php:225 ../ezflippr.php:235
 msgid "Flipbooks"
 msgstr "Flip books"
 
-#: ../ezflippr.php:166
+#: ../ezflippr.php:226
 msgid "Flipbook"
 msgstr "Flip book"
 
-#: ../ezflippr.php:167 ../ezflippr.php:251
+#: ../ezflippr.php:227 ../ezflippr.php:312
 msgid "Edit"
 msgstr "Modifier"
 
-#: ../ezflippr.php:168
+#: ../ezflippr.php:228
 msgid "Edit Flipbook"
 msgstr "Modifier le flip book"
 
-#: ../ezflippr.php:169 ../ezflippr.php:255
+#: ../ezflippr.php:229 ../ezflippr.php:316
 msgid "View"
 msgstr "Voir"
 
-#: ../ezflippr.php:170
+#: ../ezflippr.php:230
 msgid "View Flipbook"
 msgstr "Voir le flip book"
 
-#: ../ezflippr.php:171
+#: ../ezflippr.php:231
 msgid "No Flipbooks found"
 msgstr "Aucun flip book trouvé"
 
-#: ../ezflippr.php:172
+#: ../ezflippr.php:232
 msgid "No Flipbooks found in Trash"
 msgstr "Aucun flip book dans la corbeille"
 
-#: ../ezflippr.php:190
+#: ../ezflippr.php:250
 msgid "Flipbooks imported from ezFlippr.com"
 msgstr "Flip books importés de ezFlippr.com"
 
-#: ../ezflippr.php:225
+#: ../ezflippr.php:285
 msgid "Status"
 msgstr "Statut"
 
-#: ../ezflippr.php:226
+#: ../ezflippr.php:286
 msgid "Actions"
 msgstr "Actions"
 
-#: ../ezflippr.php:239
+#: ../ezflippr.php:300
 msgid "Installed"
 msgstr "Installé"
 
-#: ../ezflippr.php:244
+#: ../ezflippr.php:305
 msgid "Not installed"
 msgstr "Non installé"
 
-#: ../ezflippr.php:246
+#: ../ezflippr.php:307
 msgid "Expired"
 msgstr "Expiré"
 
-#: ../ezflippr.php:257
+#: ../ezflippr.php:318
 msgid "Uninstall"
 msgstr "Désinstaller"
 
-#: ../ezflippr.php:260
+#: ../ezflippr.php:321
 msgid "Reinstall"
 msgstr "Réinstaller"
 
-#: ../ezflippr.php:265
+#: ../ezflippr.php:326
 msgid "Install"
 msgstr "Installer"
 
-#: ../ezflippr.php:271
+#: ../ezflippr.php:332
 msgid "Customize"
 msgstr "Personnaliser"
 
-#: ../ezflippr.php:274
+#: ../ezflippr.php:335
 msgid "Buy"
 msgstr "Acheter"
 
-#: ../ezflippr.php:346
+#: ../ezflippr.php:387
+msgid "No ID"
+msgstr "Pas d'identifiant"
+
+#: ../ezflippr.php:411
 msgid "Please enable JavaScript"
 msgstr "Veuillez activer le JavaScript"
 
-#: ../ezflippr.php:442
+#: ../ezflippr.php:507
 msgid "No communication methods supported. Install php_curl"
 msgstr "Aucune méthode de communication. Installez php_curl."
 
-#: ../ezflippr.php:462
+#: ../ezflippr.php:528
 msgid "Check your email, your access key has been sent!"
 msgstr "Vérifiez vos emails, votre clé d'accès a été envoyée!"
 
-#: ../ezflippr.php:611
+#: ../ezflippr.php:704
 #, php-format
 msgid "%d years ago"
 msgstr "il y a %d années"
 
-#: ../ezflippr.php:614
+#: ../ezflippr.php:707
 #, php-format
 msgid "%d months ago"
 msgstr "il y a %d mois"
 
-#: ../ezflippr.php:615
+#: ../ezflippr.php:708
 #, php-format
 msgid "%d weeks ago"
 msgstr "il y a %d semaines"
 
-#: ../ezflippr.php:616
+#: ../ezflippr.php:709
 #, php-format
 msgid "%d days ago"
 msgstr "il y a %d jours"
 
-#: ../ezflippr.php:617
+#: ../ezflippr.php:710
 #, php-format
 msgid "%d hours ago"
 msgstr "il y a %d heures"
 
-#: ../ezflippr.php:618
+#: ../ezflippr.php:711
 #, php-format
 msgid "%d minutes ago"
 msgstr "il y a %d minutes"
 
-#: ../ezflippr.php:619
+#: ../ezflippr.php:712
 msgid "moments ago"
 msgstr "il y a un moment"
 
-#: ../ezflippr.php:621
+#: ../ezflippr.php:714
 msgid "Never"
 msgstr "Jamais"
 
-#: ../ezflippr.php:623
+#: ../ezflippr.php:716
 #, php-format
 msgid "Your flipbooks list was last refreshed %1$s."
 msgstr "Votre liste de flip books a été rafraichie %1$s."
@@ -203,42 +234,3 @@ msgstr "Rafraichir"
 #: ../resources/admin/includes/settings-validkey.php:38
 msgid "Your access key: "
 msgstr "Votre clé d'accès: "
-
-#~ msgid "The domain name of your WordPress blog appears to have changed! <a href=\"%1$s\">Click here to update your config</a> or <a href=\"%2$s\">dismiss</a>."
-#~ msgstr "Le nom de domaine de votre blogue WordPress semble changé! <a href=\"%1$s\">Cliquez ici pour mettre à jour vos paramètres</a> ou <a href=\"%2$s\">ignorer</a>."
-
-#~ msgid "Change Domain"
-#~ msgstr "Changer le domaine"
-
-#~ msgid "Change domain from: "
-#~ msgstr "Changer le domaine de :"
-
-#~ msgid "Change domain to: "
-#~ msgstr "Changer le domaine à :"
-
-#~ msgid "Also change secure <code>https</code> links"
-#~ msgstr "Changer également les liens sécurisés <code>https</code>"
-
-#~ msgid "Change both <code>www.old-domain.com</code> and <code>old-domain.com</code> links"
-#~ msgstr "Changer les liens de type <code>www.old-domain.com</code> et <code>old-domain.com</code>"
-
-#~ msgid "I have backed up my database and will assume the responsability of any data loss or corruption."
-#~ msgstr "J'ai fait une copie de sauvegarde de ma base de données et j'assume toute responsabilité en cas de perte ou de corruption de données."
-
-#~ msgid "Change domain"
-#~ msgstr "Changer le domaine"
-
-#~ msgid "Old domain: %1$s"
-#~ msgstr "Ancien domaine : %1$s"
-
-#~ msgid "New domain: %1$s"
-#~ msgstr "Nouveau domaine : %1$s"
-
-#~ msgid "Skipping table %1$s because no unique id"
-#~ msgstr "La table %1$s a été ignorée car elle ne contient pas d'identifiants uniques"
-
-#~ msgid "Processing table %1$s"
-#~ msgstr "Traitement de la table %1$s"
-
-#~ msgid "Back"
-#~ msgstr "Retour"
