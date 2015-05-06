@@ -1,7 +1,7 @@
 === ezFlippr ===
 Contributors: nuagelab
-Tags: flipbook
-Requires at least: 3.0
+Tags: flipbook, administration
+Requires at least: 3.6
 Tested up to: 4.2.1
 Stable tag: trunk
 License: GPLv2 or later
@@ -10,14 +10,26 @@ Allows download and installation of flipbooks created with ezFlippr.com.
 
 == Description ==
 
-The plugin will download a list of the flipbook you created and allow you to install them on your WordPress web site.
+The plugin will download a list of the flipbook you created with [ezFlippr](http://ezflippr.com), and will allow you to install them on your WordPress web site.
+
+[ezFlippr](http://ezflippr.com) is a flipbook creation platform that offers free watermarked Flash and mobile-compatible flipbooks, and paid versions without watermarks.
 
 = Features =
 
-* Get the list of your flipbooks from ezFlippr.com
+* Get the list of your flipbooks from [ezFlippr](http://ezflippr.com)
 * Install the flipbooks you want on your web site in one click
 * Add them to pages with the [ezflippr] shortcode
 * View them full page
+
+= Feedback =
+* We are open for your suggestions and feedback - Thank you for using or trying out one of our plugins!
+* Drop us a line [@nuagelab](http://twitter.com/#!/nuagelab) on Twitter
+* Follow us on [our Facebook page](https://www.facebook.com/pages/NuageLab/150091288388352)
+* Drop us a line at [info@ezflippr.com](mailto:info@ezflippr.com)
+
+= More =
+* [Also see our other plugins](http://www.nuagelab.com/products/wordpress-plugins/) or see [our WordPress.org profile page](http://profiles.wordpress.org/users/nuagelab/)
+* For a limited time, use the <code>WORDPRESS</code> promocode for an instant 10$ off paid versions of your flipbooks.
 
 == Installation ==
 
@@ -42,7 +54,7 @@ This section describes how to install the plugin and get it working.
 1. Once Installed, go to the ezFlippr and enter/request your access key
 1. Go to the flipbooks section to install flipbooks
 
-== Adding flip books ==
+= Adding flip books =
 
 1. Create your flip book on www.ezflippr.com
 1. Go to the ezFlippr configuration panel, and enter either your email or your access key (if you enter your email, your access key will be mailed to you)
@@ -50,6 +62,23 @@ This section describes how to install the plugin and get it working.
 1. To display the flipbook in a page, use the shortcode displayed in the flip books list (ex. [flipbook id="58" width="100%" height="500"])
 1. To display the flipbook full page, simply use the "View" link in the flip books list.
 1. You may customize the full page template by creating a single-ezflippr_flipbook.php file in your template directory. You may start from the file wp-content/plugins/ezflippr/resources/templates/single-ezflippr_flipbook.php.
+
+= Installing CURL =
+
+*On Ubuntu Linux*:
+<code>
+sudo apt-get install curl libcurl3 php5-curl
+sudo service apache2 restart
+</code>
+
+*On Centos/RedHat Linux*:
+CURL is installed by default with PHP.
+
+*On WAMP*:
+CURL is installed by default with WAMP.
+
+*On MAMP*:
+CURL is installed by default with MAMP.
 
 == Frequently Asked Questions ==
 
@@ -72,3 +101,8 @@ Yes, this plugin will be translated to french and spanish shortly. If you want t
 * Fixed early call to is_admin() causing a bug in the admin once in a while
 
 == Upgrade Notice ==
+
+== Translations ==
+
+* English
+* Français
