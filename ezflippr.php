@@ -3,7 +3,7 @@
 * Plugin Name: ezFlippr
 * Plugin URI: http://www.nuagelab.com/wordpress-plugins/ezflippr
 * Description: Adds rich flipbooks made from PDF through ezFlippr.com
-* Version: 1.1
+* Version: 1.1.1
 * Author: NuageLab <wordpress-plugins@nuagelab.com>
 * Author URI: http://www.nuagelab.com/wordpress-plugins
 * License: GPL2
@@ -69,22 +69,6 @@ class ezFlippr{
         add_action('plugins_loaded', array( $this, 'ezflippr_i18n' ) );
 	    add_shortcode('flipbook', array( $this, 'ezflippr_shortcode' ));
 	    add_filter('single_template', array( $this, 'ezflippr_single_template' ));
-
-        if (is_admin()) {
-	        // Add menu
-            add_action( 'admin_menu', array( $this, 'ezflippr_add_menu' ) );
-
-	        // Change visual
-	        add_action( 'admin_head', array( $this, 'ezflippr_admin_head' ) );
-
-	        // Update every 4 hours
-	        if (self::getOption('lastupdate')+4*3600 < time()) {
-		        $this->refreshList();
-	        }
-
-	        // Check if some books have been modified
-	        add_action('admin_notices', array(&$this, 'ezflippr_add_modified_notice'));
-        }
     }
 
     /**
@@ -251,9 +235,26 @@ class ezFlippr{
             )
         );
 
-        add_filter('post_row_actions', array($this, 'remove_row_actions'), 10, 2);
-		add_filter('manage_edit-ezflippr_flipbook_columns', array($this, 'add_flipbook_columns'));
-        add_action('manage_ezflippr_flipbook_posts_custom_column', array($this,'manage_flipbook_columns'), 10, 2);
+	    if (is_admin()) {
+		    // Add menu
+		    add_action( 'admin_menu', array( $this, 'ezflippr_add_menu' ) );
+
+		    // Change visual
+		    add_action( 'admin_head', array( $this, 'ezflippr_admin_head' ) );
+
+		    // Modify menu
+		    add_filter('post_row_actions', array($this, 'remove_row_actions'), 10, 2);
+		    add_filter('manage_edit-ezflippr_flipbook_columns', array($this, 'add_flipbook_columns'));
+		    add_action('manage_ezflippr_flipbook_posts_custom_column', array($this,'manage_flipbook_columns'), 10, 2);
+
+		    // Update every 4 hours
+		    if (self::getOption('lastupdate')+4*3600 < time()) {
+			    $this->refreshList();
+		    }
+
+		    // Check if some books have been modified
+		    add_action('admin_notices', array(&$this, 'ezflippr_add_modified_notice'));
+	    }
     }
 
     /**

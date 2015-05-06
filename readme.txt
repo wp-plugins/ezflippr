@@ -68,4 +68,7 @@ Yes, this plugin will be translated to french and spanish shortly. If you want t
 * Added notice when flipbooks are modified/bought
 * Moved flush_rewrite_rules to activation hook rather than registration
 
+= 1.1.1 =
+* Fixed early call to is_admin() causing a bug in the admin once in a while
+
 == Upgrade Notice ==
