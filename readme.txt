@@ -2,7 +2,7 @@
 Contributors: nuagelab
 Tags: flipbook, administration
 Requires at least: 3.6
-Tested up to: 4.2.1
+Tested up to: 4.2.2
 Stable tag: trunk
 License: GPLv2 or later
 
@@ -87,6 +87,10 @@ CURL is installed by default with MAMP.
 Yes, this plugin will be translated to french and spanish shortly. If you want to help with translation in other languages, we'll be happy to hear from you.
 
 == Changelog ==
+= 1.1.3 =
+* Fixed problem with access key sometimes not being sent
+* Tested with 4.2.2
+
 = 1.1.2 =
 * Added AJAX install/reinstall/uninstall
 
@@ -104,6 +108,9 @@ Yes, this plugin will be translated to french and spanish shortly. If you want t
 * First released version. Tested internally with about 10 sites.
 
 == Upgrade Notice ==
+= 1.1.3 =
+* Fixed problem with access key sometimes not being sent
+
 = 1.1.2 =
 * Added AJAX install/reinstall/uninstall
 

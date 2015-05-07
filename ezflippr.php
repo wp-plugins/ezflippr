@@ -3,7 +3,7 @@
 * Plugin Name: ezFlippr
 * Plugin URI: http://www.nuagelab.com/wordpress-plugins/ezflippr
 * Description: Adds rich flipbooks made from PDF through ezFlippr.com
-* Version: 1.1.2
+* Version: 1.1.3
 * Author: NuageLab <wordpress-plugins@nuagelab.com>
 * Author URI: http://www.nuagelab.com/wordpress-plugins
 * License: GPL2
@@ -37,12 +37,12 @@ define("__EZFLIPPR_STAGING__", false);
 
 require_once __DIR__ . "/resources/Util.php";
 
-if(__EZFLIPPR_DEBUG__) {
+if (__EZFLIPPR_DEBUG__) {
     @error_reporting(E_ALL);
     @ini_set("display_errors", "1");
 }
 
-if(class_exists('ezFlippr', false)) {
+if (class_exists('ezFlippr', false)) {
 	//die(__('ERROR: It looks like you have more than one instance of ' . __EZFLIPPR_PLUGIN_NAME__ . ' installed. Please remove additional instances for this plugin to work again.', __EZFLIPPR_PLUGIN_SLUG__));
 }
 
@@ -146,6 +146,16 @@ class ezFlippr{
 			echo '</div>';
 		}
 		self::setOption('dismissed', serialize($dismissed));
+
+		// Set admin notice if not access key has been set
+		$accessKey = array_key_exists('ezflippr-field-key', $_POST) ? $_POST['ezflippr-field-key'] : null;
+		if (!$this->verifyAccessKey($accessKey)) {
+			echo '<div class="update-nag">';
+			printf(__('The ezFlippr plugin needs to be set up in order to access your flipbooks. <a href="%1$s">Do it now</a>.',__EZFLIPPR_PLUGIN_SLUG__),
+				'/wp-admin/admin.php?page=ezflippr'
+			);
+			echo '</div>';
+		}
 	}
 
     /**
@@ -154,19 +164,19 @@ class ezFlippr{
     public function ezflippr_settings()
     {
         $accessKey  = NULL;
-        if(isset($_POST['ezflippr-submit']) && wp_verify_nonce($_POST['nonce'], $_POST['action'])) {
-            self::saveSettings();
-            $accessKey  = $_POST['ezflippr-field-key'];
+        if (isset($_POST['ezflippr-submit']) && wp_verify_nonce($_POST['nonce'], $_POST['action'])) {
+	        self::saveSettings();
+	        $accessKey  = $_POST['ezflippr-field-key'];
 
-            if ((!@$_POST['ezflippr-field-havekey']) && (isset($_POST['ezflippr-field-email']))) {
+	        if ((@$_POST['ezflippr-field-havekey'] != 1) && (isset($_POST['ezflippr-field-email']))) {
                 $this->sendAccessKey($_POST['ezflippr-field-email']);
             }
-        } else if(isset($_POST['ezflippr-refresh']) && wp_verify_nonce($_POST['nonce'], $_POST['action'])) {
+        } else if (isset($_POST['ezflippr-refresh']) && wp_verify_nonce($_POST['nonce'], $_POST['action'])) {
             $this->refreshList();
         }
 
-        if(!$this->verifyAccessKey($accessKey)) {
-            if($accessKey) $this->error = __("The access key you entered is invalid", __EZFLIPPR_PLUGIN_SLUG__);
+        if (!$this->verifyAccessKey($accessKey)) {
+            if ($accessKey) $this->error = __("The access key you entered is invalid", __EZFLIPPR_PLUGIN_SLUG__);
             include_once __EZFLIPPR_DIR__ . "resources/admin/includes/settings-invalidkey.php";
         }else{
             include_once __EZFLIPPR_DIR__ . "resources/admin/includes/settings-validkey.php";
@@ -270,7 +280,7 @@ class ezFlippr{
      */
 	public function remove_row_actions($actions, $post)
 	{
-        if($post->post_type !== 'ezflippr_flipbook') return $actions;
+        if ($post->post_type !== 'ezflippr_flipbook') return $actions;
 
         unset( $actions['edit'] );
         unset( $actions['view'] );
@@ -361,7 +371,7 @@ class ezFlippr{
      */
     public function ezflippr_deactivate()
     {
-        if(__EZFLIPPR_TEST__ || __EZFLIPPR_STAGING__) {
+        if (__EZFLIPPR_TEST__ || __EZFLIPPR_STAGING__) {
             define("WP_UNINSTALL_PLUGIN", true);
             include_once __EZFLIPPR_DIR__ . "/uninstall.php";
         }
@@ -374,7 +384,7 @@ class ezFlippr{
             // find out if a single template for this exists in the theme
             // if it does, let WP handle it
             // if not, include our copy
-            if(!file_exists(get_stylesheet_directory() . "/single-ezflippr_flipbook.php")) {
+            if (!file_exists(get_stylesheet_directory() . "/single-ezflippr_flipbook.php")) {
                 $single_template = __EZFLIPPR_DIR__ . "resources/templates/single-ezflippr_flipbook.php";
             }
         }
@@ -425,7 +435,7 @@ class ezFlippr{
      * Writes to the file /tmp/log.log if DEBUG is on
      */
     public static function writeDebug($msg) {
-        if(__EZFLIPPR_DEBUG__) file_put_contents(__EZFLIPPR_DIR__ . "/tmp/log.log", date('F j, Y H:i:s') . " - " . $msg."\n", FILE_APPEND);
+        if (__EZFLIPPR_DEBUG__) file_put_contents(__EZFLIPPR_DIR__ . "/tmp/log.log", date('F j, Y H:i:s') . " - " . $msg."\n", FILE_APPEND);
     }
 
     /**
@@ -494,10 +504,10 @@ class ezFlippr{
                 self::writeDebug("curl_errno ".curl_error($conn));
             }
             curl_close($conn);
-        }elseif(function_exists('file_get_contents')) {
+        }elseif (function_exists('file_get_contents')) {
             $method = "file_get_contents";
             $response = file_get_contents($url);
-        }elseif(function_exists('fopen') && function_exists('stream_get_contents')) {
+        }elseif (function_exists('fopen') && function_exists('stream_get_contents')) {
             $method = "fopen";
             $handle = fopen ($url, "r");
             $response = stream_get_contents($handle);
@@ -507,7 +517,7 @@ class ezFlippr{
 
         self::writeDebug("Calling ".$url. " with ".$method." response = ".$response);
 
-        if($response !== false) {
+        if ($response !== false) {
 			$response   = json_decode($response);
 			return array($error, $response);
         }else{
@@ -544,16 +554,16 @@ class ezFlippr{
 		$update     = true;
 		$force      = false;
 
-        if($key) {
+        if ($key) {
 			$force  = true;
 			$update = false;
 		}else{
             $key    = self::getOption('accesskey');
         }
 
-		if(!$key) return false;
+		if (!$key) return false;
 
-		if(!$force) {
+		if (!$force) {
 			$lastCheck  = self::getOption('accesskey-lastcheck');
 			if ($lastCheck + 86400 > time()) return true;
 		}
@@ -565,11 +575,11 @@ class ezFlippr{
 			)
 		);
 		if ($http < 400) {
-            if($force) self::setOption('accesskey', $key);
-			if($update) self::setOption('accesskey-lastcheck', time());
+            if ($force) self::setOption('accesskey', $key);
+			if ($update) self::setOption('accesskey-lastcheck', time());
 			return true;
 		} else {
-			if($update) self::setOption('accesskey-lastcheck', 0);
+			if ($update) self::setOption('accesskey-lastcheck', 0);
 			return false;
 		}
 	}
@@ -659,7 +669,7 @@ class ezFlippr{
         $wpUploads  = wp_upload_dir();
         $dir        = $wpUploads['basedir'] . DIRECTORY_SEPARATOR  . __EZFLIPPR_PLUGIN_SLUG__ . DIRECTORY_SEPARATOR . md5($uuid);
 
-        if($install) {
+        if ($install) {
 	        set_time_limit(0);
             list($http,$result) = self::callAPI(
                 'get_flipbook/' . $uuid,
@@ -668,7 +678,7 @@ class ezFlippr{
                 )
             );
 
-            if($http < 400) {
+            if ($http < 400) {
                 try{
                     @mkdir($dir, 0755, true);
                     foreach ($result->files as $name=>$file) {
@@ -703,7 +713,7 @@ class ezFlippr{
     private function getLastUpdate()
     {
         $time   = self::getOption('lastupdate');
-        if($time) {
+        if ($time) {
             if (!is_numeric($time)) {
                 $time = strtotime($time);
             }
@@ -725,7 +735,7 @@ class ezFlippr{
 
     private function saveSettings()
     {
-        if(isset($_POST['ezflippr-field-email'])) {
+        if (isset($_POST['ezflippr-field-email'])) {
             self::setOption("email", $_POST['ezflippr-field-email']);
         }
     }
