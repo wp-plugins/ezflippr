@@ -3,7 +3,7 @@
 * Plugin Name: ezFlippr
 * Plugin URI: http://www.nuagelab.com/wordpress-plugins/ezflippr
 * Description: Adds rich flipbooks made from PDF through ezFlippr.com
-* Version: 1.1.3
+* Version: 1.1.4
 * Author: NuageLab <wordpress-plugins@nuagelab.com>
 * Author URI: http://www.nuagelab.com/wordpress-plugins
 * License: GPL2
@@ -58,6 +58,8 @@ class ezFlippr{
 
     private $error;
     private $notice;
+
+	private static $version = null;
 
     public function __construct() {
         // all hooks and actions
@@ -491,6 +493,7 @@ class ezFlippr{
             curl_setopt($conn, CURLOPT_RETURNTRANSFER, 1);
             curl_setopt($conn, CURLOPT_CONNECTTIMEOUT, 0);
             curl_setopt($conn, CURLOPT_TIMEOUT, self::API_TIMEOUT);
+	        curl_setopt($conn, CURLOPT_USERAGENT, 'ezflippr-wp ('.self::getVersion().')');
 			if ($params !== null) {
 				curl_setopt($conn, CURLOPT_POST, count($params));
 				curl_setopt($conn, CURLOPT_POSTFIELDS, $params);
@@ -506,7 +509,13 @@ class ezFlippr{
             curl_close($conn);
         }elseif (function_exists('file_get_contents')) {
             $method = "file_get_contents";
-            $response = file_get_contents($url);
+	        $opts = array(
+		        'http'=>array(
+			        'header'=>'User-Agent: ezflippr-wp ('.self::getVersion().')'."r\n",
+		        ),
+	        );
+	        $context = stream_context_create($opts);
+	        $response = file_get_contents($url, false, $context);
         }elseif (function_exists('fopen') && function_exists('stream_get_contents')) {
             $method = "fopen";
             $handle = fopen ($url, "r");
@@ -680,11 +689,18 @@ class ezFlippr{
 
             if ($http < 400) {
                 try{
-                    @mkdir($dir, 0755, true);
+	                $opts = array(
+		                'http'=>array(
+			                'header'=>'User-Agent: ezflippr-wp ('.self::getVersion().')'."\r\n",
+		                ),
+	                );
+	                $context = stream_context_create($opts);
+
+	                @mkdir($dir, 0755, true);
                     foreach ($result->files as $name=>$file) {
                         set_time_limit(2 * 60);
                         @mkdir(dirname($dir . DIRECTORY_SEPARATOR . $name));
-                        file_put_contents($dir . DIRECTORY_SEPARATOR . $name, file_get_contents($file));
+                        file_put_contents($dir . DIRECTORY_SEPARATOR . $name, file_get_contents($file, false, $context));
                     }
 	                $time = max(strtotime($result->flipbook->date_create), strtotime($result->flipbook->date_modify));
 	                $time = max($time, strtotime($result->flipbook->date_bought));
@@ -739,6 +755,19 @@ class ezFlippr{
             self::setOption("email", $_POST['ezflippr-field-email']);
         }
     }
+
+	private static function getVersion() {
+		if (!isset(self::$version)) {
+			if (!function_exists('get_plugin_data')) {
+				require dirname(__FILE__).'/../../../wp-admin/includes/plugin.php';
+			}
+			if (function_exists('get_plugin_data')) {
+				$info    = get_plugin_data( __FILE__ );
+				self::$version = $info['Version'];
+			} else return '?';
+		}
+		return self::$version;
+	}
 
 }
 

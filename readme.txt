@@ -87,6 +87,9 @@ CURL is installed by default with MAMP.
 Yes, this plugin will be translated to french and spanish shortly. If you want to help with translation in other languages, we'll be happy to hear from you.
 
 == Changelog ==
+= 1.1.4 =
+* Added User Agent when querying API and downloading
+
 = 1.1.3 =
 * Fixed problem with access key sometimes not being sent
 * Tested with 4.2.2
