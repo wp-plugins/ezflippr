@@ -759,7 +759,7 @@ class ezFlippr{
 	private static function getVersion() {
 		if (!isset(self::$version)) {
 			if (!function_exists('get_plugin_data')) {
-				require dirname(__FILE__).'/../../../wp-admin/includes/plugin.php';
+				@include dirname(__FILE__).'/../../../wp-admin/includes/plugin.php';
 			}
 			if (function_exists('get_plugin_data')) {
 				$info    = get_plugin_data( __FILE__ );
