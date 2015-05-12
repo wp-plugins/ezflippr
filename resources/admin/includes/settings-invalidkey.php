@@ -38,7 +38,7 @@
         </td>
     </tr>
     <tr id="tr-email">
-        <th><label for="ezflippr-field-email"><?php _e('Enter the email your created you flipbooks with', __EZFLIPPR_PLUGIN_SLUG__);?></label></th>
+        <th><label for="ezflippr-field-email"><?php _e('Enter the email you created your flipbooks with', __EZFLIPPR_PLUGIN_SLUG__);?></label></th>
         <td>
             <input type="email" name="ezflippr-field-email" id="ezflippr-field-email" value="<?php echo $email;?>">
             <input type="submit" name="ezflippr-submit" id="ezflippr-submit" class="button-primary" value="<?php _e('Send it to me by email', __EZFLIPPR_PLUGIN_SLUG__);?>">

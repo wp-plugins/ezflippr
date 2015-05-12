@@ -84,9 +84,12 @@ CURL is installed by default with MAMP.
 
 = Do you plan to localize this plugin in a near future? =
 
-Yes, this plugin will be translated to french and spanish shortly. If you want to help with translation in other languages, we'll be happy to hear from you.
+This plugin is available in English, French and Spanish. If you want to help with translation in other languages, we'll be happy to hear from you.
 
 == Changelog ==
+= 1.1.5 =
+* Added Spanish translation
+
 = 1.1.4 =
 * Added User Agent when querying API and downloading
 
@@ -111,6 +114,9 @@ Yes, this plugin will be translated to french and spanish shortly. If you want t
 * First released version. Tested internally with about 10 sites.
 
 == Upgrade Notice ==
+= 1.1.5 =
+* Added Spanish translation
+
 = 1.1.3 =
 * Fixed problem with access key sometimes not being sent
 
