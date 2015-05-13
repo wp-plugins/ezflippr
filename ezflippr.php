@@ -3,7 +3,7 @@
 * Plugin Name: ezFlippr
 * Plugin URI: http://www.nuagelab.com/wordpress-plugins/ezflippr
 * Description: Adds rich flipbooks made from PDF through ezFlippr.com
-* Version: 1.1.5
+* Version: 1.1.6
 * Author: NuageLab <wordpress-plugins@nuagelab.com>
 * Author URI: http://www.nuagelab.com/wordpress-plugins
 * License: GPL2
@@ -507,7 +507,7 @@ class ezFlippr{
                 self::writeDebug("curl_errno ".curl_error($conn));
             }
             curl_close($conn);
-        }elseif (function_exists('file_get_contents')) {
+        } elseif ((function_exists('file_get_contents')) && (ini_get('allow_url_fopen'))) {
             $method = "file_get_contents";
 	        $opts = array(
 		        'http'=>array(
@@ -516,11 +516,11 @@ class ezFlippr{
 	        );
 	        $context = stream_context_create($opts);
 	        $response = file_get_contents($url, false, $context);
-        }elseif (function_exists('fopen') && function_exists('stream_get_contents')) {
+        } elseif (function_exists('fopen') && function_exists('stream_get_contents') && ini_get('allow_url_fopen')) {
             $method = "fopen";
             $handle = fopen ($url, "r");
             $response = stream_get_contents($handle);
-        }else{
+        } else {
             $response = false;
         }
 
@@ -530,7 +530,7 @@ class ezFlippr{
 			$response   = json_decode($response);
 			return array($error, $response);
         }else{
-            return array(500, __('No communication methods supported. Install php_curl', __EZFLIPPR_PLUGIN_SLUG__));
+            return array(500, __('No communication methods supported. Install php_curl or enable allow_url_fopen', __EZFLIPPR_PLUGIN_SLUG__));
         }
     }
 
@@ -688,6 +688,7 @@ class ezFlippr{
             );
 
             if ($http < 400) {
+	            set_time_limit(0);
                 try{
 	                $opts = array(
 		                'http'=>array(
@@ -698,9 +699,41 @@ class ezFlippr{
 
 	                @mkdir($dir, 0755, true);
                     foreach ($result->files as $name=>$file) {
-                        set_time_limit(2 * 60);
-                        @mkdir(dirname($dir . DIRECTORY_SEPARATOR . $name));
-                        file_put_contents($dir . DIRECTORY_SEPARATOR . $name, file_get_contents($file, false, $context));
+                        @mkdir(dirname($dir . DIRECTORY_SEPARATOR . $name), 0755, true);
+	                    if (function_exists('curl_exec')) {
+		                    $fp = fopen($dir . DIRECTORY_SEPARATOR . $name, 'w+');
+		                    $ch = curl_init(str_replace(" ","%20",$file));
+		                    curl_setopt($ch, CURLOPT_TIMEOUT, 50);
+		                    curl_setopt($ch, CURLOPT_FILE, $fp); // write curl response to file
+		                    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+		                    curl_setopt($ch, CURLOPT_USERAGENT, 'ezflippr-wp ('.self::getVersion().')');
+		                    try{
+			                    curl_exec($ch);
+			                    $error = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+		                    }catch(Exception $e) {
+			                    die("Couldn't install: ".$e->getMessage());
+		                    }
+		                    if ($error >= 400) {
+			                    die("Couldn't install: ".$error.' on '.$file);
+		                    }
+		                    if (curl_errno($ch)) {
+			                    self::writeDebug("curl_errno ".curl_error($ch));
+			                    die("Couldn't install: ".curl_error($ch).' on '.$file);
+		                    }
+		                    curl_close($ch);
+		                    fclose($fp);
+	                    } else if (function_exists('fopen') && function_exists('stream_copy_to_stream') && ini_get('allow_url_fopen')) {
+		                    $fp = fopen($dir . DIRECTORY_SEPARATOR . $name, 'w+');
+		                    $ht = fopen($file, 'r', false, $context);
+		                    stream_copy_to_stream($ht , $fp);
+		                    fclose($fp);
+		                    fclose($ht);
+	                    } else if (function_exists('file_get_contents') && ini_get('allow_url_fopen')) {
+		                    file_put_contents($dir . DIRECTORY_SEPARATOR . $name, file_get_contents($file, false, $context));
+	                    } else {
+		                    die(__('No communication methods supported. Install php_curl or enable allow_url_fopen', __EZFLIPPR_PLUGIN_SLUG__));
+	                    }
+
                     }
 	                $time = max(strtotime($result->flipbook->date_create), strtotime($result->flipbook->date_modify));
 	                $time = max($time, strtotime($result->flipbook->date_bought));
@@ -712,6 +745,8 @@ class ezFlippr{
                 }catch(Exception $e) {
                     die("Couldn't install: ".$e->getMessage());
                 }
+            } else {
+	            die("Couldn't install: got HTTP code ".$http);
             }
         }else{
             Util::cleanDir($dir);
