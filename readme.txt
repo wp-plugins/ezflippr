@@ -87,6 +87,9 @@ CURL is installed by default with MAMP.
 This plugin is available in English, French and Spanish. If you want to help with translation in other languages, we'll be happy to hear from you.
 
 == Changelog ==
+= 1.1.7 =
+* Added flipbook shortcode button to visual editor
+
 = 1.1.6 =
 * Added alternate download methods for low memory and allow_url_fopen=off hostings such as 1&1 and GoDaddy.
 
@@ -117,6 +120,9 @@ This plugin is available in English, French and Spanish. If you want to help wit
 * First released version. Tested internally with about 10 sites.
 
 == Upgrade Notice ==
+= 1.1.7 =
+* Added flipbook shortcode button to visual editor
+
 = 1.1.6 =
 * Added alternate download methods for low memory and allow_url_fopen=off hostings such as 1&1 and GoDaddy.
 

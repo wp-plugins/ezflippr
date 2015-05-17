@@ -3,7 +3,7 @@
 * Plugin Name: ezFlippr
 * Plugin URI: http://www.nuagelab.com/wordpress-plugins/ezflippr
 * Description: Adds rich flipbooks made from PDF through ezFlippr.com
-* Version: 1.1.6
+* Version: 1.1.7
 * Author: NuageLab <wordpress-plugins@nuagelab.com>
 * Author URI: http://www.nuagelab.com/wordpress-plugins
 * License: GPL2
@@ -211,8 +211,11 @@ class ezFlippr{
         wp_register_script("ezflippr", __EZFLIPPR_RESOURCES__ . "js/ezflippr.js");
         wp_enqueue_script("ezflippr");
 
-        wp_register_style("ezflippr", __EZFLIPPR_RESOURCES__ . "css/ezflippr.css");
-        wp_enqueue_style("ezflippr");
+        wp_register_style("ezflippr-admin", __EZFLIPPR_RESOURCES__ . "css/ezflippr-admin.css");
+        wp_enqueue_style("ezflippr-admin");
+
+	    wp_enqueue_script('wpdialogs');
+	    wp_enqueue_style('wp-jquery-ui-dialog');
     }
 
     /**
@@ -259,6 +262,11 @@ class ezFlippr{
 
 		    // Change visual
 		    add_action( 'admin_head', array( $this, 'ezflippr_admin_head' ) );
+
+		    // Add editor button
+		    add_filter('mce_external_plugins', array($this, 'tinymce_add_buttons'));
+		    add_filter('mce_buttons', array($this, 'tinymce_register_buttons'));
+		    add_action('after_wp_tiny_mce', array($this, 'tinymce_dialog_contents'));
 
 		    // Modify menu
 		    add_filter('post_row_actions', array($this, 'remove_row_actions'), 10, 2);
@@ -533,6 +541,98 @@ class ezFlippr{
             return array(500, __('No communication methods supported. Install php_curl or enable allow_url_fopen', __EZFLIPPR_PLUGIN_SLUG__));
         }
     }
+
+    /********************************************* TinyMCE *********************************************/
+
+	public function tinymce_add_buttons( $plugin_array ) {
+		$plugin_array['ezflippr'] = __EZFLIPPR_RESOURCES__ . 'js/tinymce-plugin.js';
+		return $plugin_array;
+	}
+
+	public function tinymce_register_buttons( $buttons ) {
+		array_push($buttons, 'flipbook');
+		return $buttons;
+	}
+
+	public function tinymce_dialog_contents() {
+		/*
+		 * Enqueue and print your styles and scripts that are needed for the dialog
+		 * Use wp_enqueue_style/wp_enqueue_script and wp_print_styles/wp_print_scripts
+		 */
+		//wp_enqueue_style('my-custom-wpdialog-style', plugins_url('css/my-custom-dialog.css', __FILE__));
+		//wp_enqueue_script('my-custom-wpdialog-script', plugins_url('js/my-custom-dialog.js', __FILE__), array('jquery'));
+		// Print style and script right now
+		//wp_print_styles('my-custom-wp-dialog-style');
+		//wp_print_scripts('my-custom-wp-dialog-script');
+
+		// Print directly html
+		$books = get_posts(array('post_type'=>'ezflippr_flipbook', 'posts_per_page'=>-1,));
+		$map = array();
+		foreach ($books as $b) {
+			$map[$b->ID] = $b->post_title;
+		}
+		?>
+		<div style="display: none">
+			<form id="ezflippr-tinymce-flipbook" tabindex="-1">
+				<div class="ezflippr-selector">
+					<p class="howto"><?php _e('Select your flipbook', __EZFLIPPR_PLUGIN_SLUG__); ?></p>
+					<div>
+						<label>
+							<span><?php _e('Flipbook', __EZFLIPPR_PLUGIN_SLUG__); ?></span>
+							<select id="flipbook_id">
+							<?php if (count($books) == 0): ?>
+								<option value="">(no flipbook, please install one)</option>
+							<?php else: ?>
+								<?php foreach ($books as $p): ?>
+									<option value="<?php echo $p->ID; ?>"><?php echo apply_filters('the_title', $p->post_title); ?></option>
+								<?php endforeach; ?>
+							<?php endif; ?>
+							</select>
+						</label>
+					</div>
+
+					<p class="howto"><?php _e('Adjust flipbook size', __EZFLIPPR_PLUGIN_SLUG__); ?></p>
+					<div>
+						<label><span><?php _e('Width', __EZFLIPPR_PLUGIN_SLUG__); ?></span>
+							<input min="1" type="number" id="flipbook_w" value="100">
+							<select id="flipbook_w_u">
+								<option value=""><?php _e('pixels',__EZFLIPPR_PLUGIN_SLUG__); ?></option>
+								<option value="%" selected="selected">%</option>
+							</select>
+						</label>
+					</div>
+					<div>
+						<label><span><?php _e('Height', __EZFLIPPR_PLUGIN_SLUG__); ?></span>
+							<input min="1" type="number" id="flipbook_h" value="500">
+							<select id="flipbook_h_u">
+								<option value="" selected="selected"><?php _e('pixels',__EZFLIPPR_PLUGIN_SLUG__); ?></option>
+								<option value="%">%</option>
+							</select>
+						</label>
+					</div>
+				</div>
+
+				<div class="submitbox">
+					<div id="ezflippr-cancel">
+						<a class="submitdelete deletion" href="#"><?php _e('Cancel', __EZFLIPPR_PLUGIN_SLUG__); ?></a>
+					</div>
+					<div id="ezflippr-insert">
+						<input type="submit" value="<?php _e('Insert', __EZFLIPPR_PLUGIN_SLUG__); ?>" class="button button-primary" id="wp-link-submit" name="wp-link-submit">
+					</div>
+				</div>
+				<input type="hidden" id="ezflippr-error-noflipbook" value="<?php echo esc_attr(__('Install a flipbook in the Flipbooks menu first.',__EZFLIPPR_PLUGIN_SLUG__)); ?>">
+				<input type="hidden" class="dialog-title" value="<?php echo esc_attr(__('Insert a flipbook',__EZFLIPPR_PLUGIN_SLUG__)); ?>">
+				<input type="hidden" class="placeholder-title-template" value="<?php echo esc_attr(__('Flipbook titled "%title%"',__EZFLIPPR_PLUGIN_SLUG__)); ?>">
+			</form>
+		</div>
+		<script>
+			var ezflippr_books = <?php echo json_encode($map); ?>;
+		</script>
+	<?php
+	}
+
+
+
 
     /****************************************** API functions ******************************************/
 

@@ -1,0 +1,56 @@
+#ezflippr-tinymce-flipbook {
+  outline: none;
+}
+#ezflippr-tinymce-flipbook .ezflippr-selector {
+  outline: none;
+  -webkit-overflow-scrolling: touch;
+  padding: 0 16px;
+  position: absolute;
+  top: 36px;
+  left: 0;
+  right: 0;
+  bottom: 44px;
+  padding-bottom: 41px;
+}
+#ezflippr-tinymce-flipbook label span {
+  display: inline-block;
+  width: 80px;
+  text-align: right;
+  padding-right: 5px;
+  max-width: 24%;
+}
+#ezflippr-tinymce-flipbook #flipbook_w,
+#ezflippr-tinymce-flipbook #flipbook_h {
+  width: 70px;
+  text-align: right;
+}
+#ezflippr-tinymce-flipbook p.howto {
+  margin: 12px 0 3px;
+}
+#ezflippr-tinymce-flipbook .submitbox {
+  padding: 8px 16px;
+  background: #fcfcfc;
+  border-top: 1px solid #dfdfdf;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+#ezflippr-tinymce-flipbook .submitbox #ezflippr-cancel {
+  line-height: 25px;
+  float: left;
+}
+#ezflippr-tinymce-flipbook .submitbox #ezflippr-insert {
+  line-height: 23px;
+  float: right;
+}
+table.ezf-settings {
+  width: 80%;
+}
+table.ezf-settings tr td,
+table.ezf-settings tr th {
+  width: 30%;
+}
+table.ezf-settings tr th {
+  text-align: left;
+}
