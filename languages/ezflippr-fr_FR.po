@@ -1,14 +1,12 @@
-# Translation of WordPress 3.4.1
-# Copyright (C) 2012 WordPress
-# This file is distributed under the same license as the WordPress package.
-# WordPress Francophone <traduction@wordpress-fr.net>, 2012.
+# Translation of ezFlippr
+# Copyright (C) 2015+ NuageLab
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: ezFlippr\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-17 16:18-0500\n"
-"PO-Revision-Date: 2015-05-17 16:20-0500\n"
+"POT-Creation-Date: 2015-05-17 23:51-0500\n"
+"PO-Revision-Date: 2015-05-17 23:51-0500\n"
 "Last-Translator: Tommy Lacroix <tlacroix@nuagelab.com>\n"
 "Language-Team: NuageLab <wordpress-plugins@nuagelab.com>\n"
 "Language: fr_FR\n"
@@ -75,95 +73,99 @@ msgstr ""
 "L'extension ezFlippr doit être configurée afin de pouvoir accéder à vos "
 "flipbooks. <a href=\"%1$s\">Configurer maintenant</a>."
 
-#: ../ezflippr.php:181
+#: ../ezflippr.php:211
+msgid "Thank you! Your email has been sent."
+msgstr "Merci! Votre email a été envoyé!"
+
+#: ../ezflippr.php:227
 msgid "The access key you entered is invalid"
 msgstr "La clé d'accès que vous avez entrée est invalide."
 
-#: ../ezflippr.php:230 ../ezflippr.php:240
+#: ../ezflippr.php:276 ../ezflippr.php:286
 msgid "Flipbooks"
 msgstr "Flip books"
 
-#: ../ezflippr.php:231 ../ezflippr.php:581
+#: ../ezflippr.php:277 ../ezflippr.php:627
 msgid "Flipbook"
 msgstr "Flip book"
 
-#: ../ezflippr.php:232 ../ezflippr.php:339
+#: ../ezflippr.php:278 ../ezflippr.php:385
 msgid "Edit"
 msgstr "Modifier"
 
-#: ../ezflippr.php:233
+#: ../ezflippr.php:279
 msgid "Edit Flipbook"
 msgstr "Modifier le flip book"
 
-#: ../ezflippr.php:234 ../ezflippr.php:343
+#: ../ezflippr.php:280 ../ezflippr.php:389
 msgid "View"
 msgstr "Voir"
 
-#: ../ezflippr.php:235
+#: ../ezflippr.php:281
 msgid "View Flipbook"
 msgstr "Voir le flip book"
 
-#: ../ezflippr.php:236
+#: ../ezflippr.php:282
 msgid "No Flipbooks found"
 msgstr "Aucun flip book trouvé"
 
-#: ../ezflippr.php:237
+#: ../ezflippr.php:283
 msgid "No Flipbooks found in Trash"
 msgstr "Aucun flip book dans la corbeille"
 
-#: ../ezflippr.php:255
+#: ../ezflippr.php:301
 msgid "Flipbooks imported from ezFlippr.com"
 msgstr "Flip books importés de ezFlippr.com"
 
-#: ../ezflippr.php:312
+#: ../ezflippr.php:358
 msgid "Status"
 msgstr "Statut"
 
-#: ../ezflippr.php:313
+#: ../ezflippr.php:359
 msgid "Actions"
 msgstr "Actions"
 
-#: ../ezflippr.php:327
+#: ../ezflippr.php:373
 msgid "Installed"
 msgstr "Installé"
 
-#: ../ezflippr.php:332
+#: ../ezflippr.php:378
 msgid "Not installed"
 msgstr "Non installé"
 
-#: ../ezflippr.php:334
+#: ../ezflippr.php:380
 msgid "Expired"
 msgstr "Expiré"
 
-#: ../ezflippr.php:345
+#: ../ezflippr.php:391
 msgid "Uninstall"
 msgstr "Désinstaller"
 
-#: ../ezflippr.php:348
+#: ../ezflippr.php:394
 msgid "Reinstall"
 msgstr "Réinstaller"
 
-#: ../ezflippr.php:353
+#: ../ezflippr.php:399
 msgid "Install"
 msgstr "Installer"
 
-#: ../ezflippr.php:359
+#: ../ezflippr.php:405
 msgid "Customize"
 msgstr "Personnaliser"
 
-#: ../ezflippr.php:362
+#: ../ezflippr.php:408
 msgid "Buy"
 msgstr "Acheter"
 
-#: ../ezflippr.php:414
+#: ../ezflippr.php:460
 msgid "No ID"
 msgstr "Pas d'identifiant"
 
-#: ../ezflippr.php:438
+#: ../ezflippr.php:484
 msgid "Please enable JavaScript"
 msgstr "Veuillez activer le JavaScript"
 
-#: ../ezflippr.php:541 ../ezflippr.php:834
+#: ../ezflippr.php:587 ../ezflippr.php:908
 msgid ""
 "No communication methods supported. Install php_curl or enable "
 "allow_url_fopen"
@@ -171,97 +173,210 @@ msgstr ""
 "Aucune méthode de communication supportée. Installez php_curl ou permettez "
 "allow_url_fopen."
 
-#: ../ezflippr.php:578
+#: ../ezflippr.php:624
 msgid "Select your flipbook"
 msgstr "Sélectionnez votre flip book"
 
-#: ../ezflippr.php:594
+#: ../ezflippr.php:640
 msgid "Adjust flipbook size"
 msgstr "Ajustez la taille du flip book"
 
-#: ../ezflippr.php:596
+#: ../ezflippr.php:642
 msgid "Width"
 msgstr "Largeur"
 
-#: ../ezflippr.php:599 ../ezflippr.php:608
+#: ../ezflippr.php:645 ../ezflippr.php:654
 msgid "pixels"
 msgstr "pixels"
 
-#: ../ezflippr.php:605
+#: ../ezflippr.php:651
 msgid "Height"
 msgstr "Hauteur"
 
-#: ../ezflippr.php:617
+#: ../ezflippr.php:663
 msgid "Cancel"
 msgstr "Annuler"
 
-#: ../ezflippr.php:620
+#: ../ezflippr.php:666
 msgid "Insert"
 msgstr "Insérer"
 
-#: ../ezflippr.php:623
+#: ../ezflippr.php:669
 msgid "Install a flipbook in the Flipbooks menu first."
 msgstr "Intallez un flip book dans le menu Flip books d'abord."
 
-#: ../ezflippr.php:624
+#: ../ezflippr.php:670
 msgid "Insert a flipbook"
 msgstr "Insérez un flip book"
 
-#: ../ezflippr.php:625
+#: ../ezflippr.php:671
 msgid "Flipbook titled \"%title%\""
 msgstr "Flip book intitulé \"%title%\""
 
-#: ../ezflippr.php:654
+#: ../ezflippr.php:700
 msgid "Check your email, your access key has been sent!"
 msgstr "Vérifiez vos emails, votre clé d'accès a été envoyée!"
 
-#: ../ezflippr.php:872
+#: ../ezflippr.php:729 ../ezflippr.php:764
+msgid "Loading. Please wait..."
+msgstr "Chargement en crous. Merci de patienter..."
+
+#: ../ezflippr.php:946
 #, php-format
 msgid "%d years ago"
 msgstr "il y a %d années"
 
-#: ../ezflippr.php:875
+#: ../ezflippr.php:949
 #, php-format
 msgid "%d months ago"
 msgstr "il y a %d mois"
 
-#: ../ezflippr.php:876
+#: ../ezflippr.php:950
 #, php-format
 msgid "%d weeks ago"
 msgstr "il y a %d semaines"
 
-#: ../ezflippr.php:877
+#: ../ezflippr.php:951
 #, php-format
 msgid "%d days ago"
 msgstr "il y a %d jours"
 
-#: ../ezflippr.php:878
+#: ../ezflippr.php:952
 #, php-format
 msgid "%d hours ago"
 msgstr "il y a %d heures"
 
-#: ../ezflippr.php:879
+#: ../ezflippr.php:953
 #, php-format
 msgid "%d minutes ago"
 msgstr "il y a %d minutes"
 
-#: ../ezflippr.php:880
+#: ../ezflippr.php:954
 msgid "moments ago"
 msgstr "il y a un moment"
 
-#: ../ezflippr.php:882
+#: ../ezflippr.php:956
 msgid "Never"
 msgstr "Jamais"
 
-#: ../ezflippr.php:884
+#: ../ezflippr.php:958
 #, php-format
 msgid "Your flipbooks list was last refreshed %1$s."
 msgstr "Votre liste de flip books a été rafraichie %1$s."
 
+#: ../resources/admin/includes/contact.php:5
+msgid "Need help or have a suggestion?"
+msgstr "Vous avez besoin d'aide ou vous avez une suggestion?"
+
+#: ../resources/admin/includes/contact.php:6
+msgid ""
+"We're always happy to hear from you and to help out whether it's by giving "
+"you a walk through or by adding a feature. Don't be shy and get in touch."
+msgstr ""
+"Nous sommes toujours content de vous lire et de vous aider, que ce soit en "
+"vous expliquant comme faire ou en ajoutant une fonctionnalité à l'extension. "
+"Ne soyez pas gêné, écrivez-nous!"
+
+#: ../resources/admin/includes/contact.php:10
+msgid "From:"
+msgstr "De:"
+
+#: ../resources/admin/includes/contact.php:21
+msgid "Subject:"
+msgstr "Sujet:"
+
+#: ../resources/admin/includes/contact.php:25
+msgid "Is this about a flipbook in particular?"
+msgstr "Est-ce que c'est à propos d'un flip book en particulier?"
+
+#: ../resources/admin/includes/contact.php:27
+msgid "No, it's not."
+msgstr "Non, ça n'est pas le cas."
+
+#: ../resources/admin/includes/contact.php:44
+msgid "Message:"
+msgstr "Message:"
+
+#: ../resources/admin/includes/contact.php:48
+msgid ""
+"Full disclosure: In order to help you out better and quicker, the plugin is "
+"going to send the following information with this message:"
+msgstr ""
+"En toute transparence: Pour mieux vous aider et plus rapidement, l'extension "
+"enverra les informations suivantes avec votre message:"
+
+#: ../resources/admin/includes/contact.php:51
+msgid "Your PHP version: "
+msgstr "Votre version PHP: "
+
+#: ../resources/admin/includes/contact.php:52
+msgid "Your WordPress version: "
+msgstr "Votre version WordPress: "
+
+#: ../resources/admin/includes/contact.php:53
+msgid "Your ezFlippr plugin version: "
+msgstr "Votre version de l'extension ezFlippr: "
+
+#: ../resources/admin/includes/contact.php:54
+#: ../resources/admin/includes/settings-validkey.php:42
+msgid "Your access key: "
+msgstr "Votre clé d'accès: "
+
+#: ../resources/admin/includes/contact.php:55
+msgid "Your site's language: "
+msgstr "La langue de votre site: "
+
+#: ../resources/admin/includes/contact.php:56
+msgid "Your site's address: "
+msgstr "L'adresse de votre site: "
+
+#: ../resources/admin/includes/contact.php:59
+msgid "I do not want this information to be sent along with my message."
+msgstr ""
+"Non. Je souhaite que ces informations ne soient PAS envoyées avec mon "
+"message."
+
+#: ../resources/admin/includes/contact.php:64
+msgid ""
+"If your server supports it (we're sorry, but we can't know for sure), you "
+"will receive a copy of this email."
+msgstr ""
+"Si votre serveur le prend en charge (nous sommes désolés, mais nous ne "
+"pouvons pas le savoir à coup sûr), vous recevrez une copie de ce email."
+
+#: ../resources/admin/includes/contact.php:67
+#, php-format
+msgid ""
+"In any case, we will get back to you shortly. Our target is that 99% of the "
+"messages we receive are answered within 8 open hours, and that all messages "
+"are answered within at most 3 days, open or not."
+msgstr ""
+"En tout les cas, nous répondrons le plus rapidement possible. Notre objectif "
+"est de répondre à 99% des messages que nous recevons dans les 8 heures "
+"ouvrables, et de répondre à tous les messages en 3 jours ou moins, fériés ou "
+"non."
+
+#: ../resources/admin/includes/contact.php:70
+msgid ""
+"We think we are doing pretty good so far. You agree? Like us on <a href="
+"\"%1%s\" target=\"_blank\">Facebook</a>. You don't? Please please please, "
+"pretty please, let us know what you think we can do better with as much "
+"details as possible, and we promise we'll read thoroughly and act upon it."
+msgstr ""
+"Nous pensons que nous faisons un bon travail jusqu'à présent. Vous êtes "
+"d'accord? Aimez-nous sur <a href=\"%1%s\" target=\"_blank\">Facebook</a>. "
+"Vous ne l'êtes pas? Nous vous serions très très très reconnaissant de nous "
+"laisser savoir pourquoi, avec le plus de détails possible, et nous vous "
+"promettons de tout lire attentivement et de prendre action pour corriger le "
+"tir."
+
+#: ../resources/admin/includes/contact.php:72
+msgid "Send"
+msgstr "Envoyer"
+
 #: ../resources/admin/includes/settings-invalidkey.php:1
-#: ../resources/admin/includes/settings-validkey.php:1
-msgid "Settings"
-msgstr "Paramètres"
+msgid "ezFlippr Settings"
+msgstr "Paramètres ezFlippr"
 
 #: ../resources/admin/includes/settings-invalidkey.php:22
 msgid "Do you have an access key?"
@@ -281,32 +396,86 @@ msgstr "Oui, et je m'en souviens!"
 
 #: ../resources/admin/includes/settings-invalidkey.php:41
 msgid "Enter the email you created your flipbooks with"
-msgstr "Entrez l'adresse courriel avec laquelle vous avez créé vos flip books"
+msgstr "Entrez l'adresse email avec laquelle vous avez créé vos flip books"
 
 #: ../resources/admin/includes/settings-invalidkey.php:44
 msgid "Send it to me by email"
-msgstr "Envoyez là moi par courriel"
+msgstr "Envoyez là moi par email"
 
 #: ../resources/admin/includes/settings-invalidkey.php:48
 msgid "Enter your access key"
 msgstr "Entrez votre clé d'accès"
 
 #: ../resources/admin/includes/settings-invalidkey.php:51
-#: ../resources/admin/includes/settings-validkey.php:40
+#: ../resources/admin/includes/settings-validkey.php:44
 msgid "Verify"
 msgstr "Vérifier"
 
 #: ../resources/admin/includes/settings-validkey.php:15
+msgid "Settings"
+msgstr "Paramètres"
+
+#: ../resources/admin/includes/settings-validkey.php:29
 msgid "Refresh"
 msgstr "Rafraichir"
 
-#: ../resources/admin/includes/settings-validkey.php:38
-msgid "Your access key: "
-msgstr "Votre clé d'accès: "
+#: ../resources/admin/includes/settings-validkey.php:48
+msgid "Want rebates? Like us on Facebook"
+msgstr "Vous voulez des rabais? Aimez-nous sur Facebook"
 
-#~ msgid "No communication methods supported. Install php_curl"
-#~ msgstr "Aucune méthode de communication. Installez php_curl."
+#: ../resources/admin/includes/settings-validkey.php:50
+#, php-format
+msgid ""
+"Although made more than %1$s flipbooks and have more than %2$s sites install "
+"our plugin, we are still a small startup devoted to make flipbooks "
+"accessible."
+msgstr ""
+"Même si nous avons produit plus de %1$s flip books et que nous avons plus de "
+"%2$s sites utilisant notre extension, nous restons une petite startup qui a "
+"pour mission de rendre les flip books accessibles à tous."
 
-#~ msgid "Enter the email your created you flipbooks with"
+#: ../resources/admin/includes/settings-validkey.php:52
+#, php-format
+msgid ""
+"Like us on <a href=\"%3$s\" target=\"_blank\">Facebook</a>, we'll like you "
+"back by regularly post $5 to $15 rebates. "
+msgstr ""
+"Aimez-nous sur <a href=\"%3$s\" target=\"_blank\">Facebook</a>, nous vous le "
+"rendrons bien! Nous postons régulièrement des rabais de 5$ à 15$."
+
+#: ../resources/admin/includes/settings-validkey.php:53
+#, php-format
+msgid ""
+"And if you like it, please give a good rating to our <a href=\"%4$s\" target="
+"\"_blank\">plugin</a> or send us comments and suggestions so it does "
+"everything you want it to do."
+msgstr ""
+"Et si vous l'aimez, nous vous serons reconnaisant de nous donner une bonne "
+"note pour <a href=\"%4$s\" target=\"_blank\">notre extension</a> ou de nous "
+"envoyer vos commentaires et suggestions afin que nous ajoutions les "
+"fonctionnalités dont vous avez vraiment besoin."
+
+#~ msgid ""
+#~ "Like us on <a href=\"%3$s\" target=\"_blank\">Facebook</a>, we regularly "
+#~ "post $5 to $15 rebates. "
 #~ msgstr ""
-#~ "Entrez l'adresse courriel avec laquelle vous avez créé vos flip books"
+#~ "Aimez-nous sur <a href=\"%3$s\" target=\"_blank\">Facebook</a>, nous "
+#~ "postons régulièrement des rabais de 5$ à 15$."
+
+#~ msgid ""
+#~ "Altough made more than %1$s flipbooks and have more than %2$s sites "
+#~ "install our plugin, we are still a small startup devoted to make "
+#~ "flipbooks accessible."
+#~ msgstr ""
+#~ "Même si nous avons produit plus de %1$s flip books et que nous avons plus "
+#~ "de %2$s sites utilisant notre extension, nous restons une petite startup "
+#~ "qui a pour mission de rendre les flip books accessibles à tous."
+
+#~ msgid ""
+#~ "And if you like it, please give the rating you think we deserve for our "
+#~ "<a href=\"%4$s\" target=\"_blank\">plugin</a> or send us comments and "
+#~ "suggestions so it does everything you want it to do."
+#~ msgstr ""
+#~ "And if you like it, please give the rating you think we deserve for our "
+#~ "<a href=\"%4$s\" target=\"_blank\">plugin</a> or send us comments and "
+#~ "suggestions so it does everything you want it to do."

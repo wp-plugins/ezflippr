@@ -1,6 +1,20 @@
+<?php
+if($this->error){
+	?>
+	<div class="error"><?php echo $this->error;?></div>
+<?php
+}
+if($this->notice){
+	?>
+	<div class="updated"><?php echo $this->notice;?></div>
+<?php
+}
+?>
+
+
 <h1>ezFlippr <?php _e('Settings', __EZFLIPPR_PLUGIN_SLUG__);?></h1>
 
-<div class="wrap">
+<div class="wrap ezflippr-settings">
 <?php
     $formAction = "ezflippr-settings+" . uniqid();
     if($this->error):
@@ -18,21 +32,11 @@
 </form>
 
 
-	<?php
+<?php
 	$formAction = "ezflippr-settings+" . uniqid();
-	if($this->error){
-		?>
-		<div class="error"><?php echo $this->error;?></div>
-	<?php
-	}
-	if($this->notice){
-		?>
-		<div class="updated"><?php echo $this->notice;?></div>
-	<?php
-	}
 	$email      = get_option('admin_email');
-	?>
-	<form method="post" name="" action="">
+?>
+<form method="post" name="" action="">
 		<?php echo wp_nonce_field($formAction, 'nonce'); ?>
 
 	<p><strong><?php _e('Your access key: '); ?></strong></p>
@@ -40,4 +44,8 @@
 	<input type="submit" name="ezflippr-submit" id="ezflippr-submit" class="button-primary" value="<?php _e('Verify', __EZFLIPPR_PLUGIN_SLUG__);?>">
 	<input type="hidden" name="action" value="<?php echo $formAction;?>">
 	</form>
+	
+	<?php
+		include(dirname(__FILE__).'/contact.php');
+	?>
 </div>

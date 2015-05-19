@@ -1,4 +1,4 @@
-<h1>ezFlippr <?php _e('Settings', __EZFLIPPR_PLUGIN_SLUG__);?></h1>
+<h1><?php _e('ezFlippr Settings', __EZFLIPPR_PLUGIN_SLUG__);?></h1>
 
 <div class="wrap">
 <?php
@@ -55,4 +55,8 @@
 
 <input type="hidden" name="action" value="<?php echo $formAction;?>">
 </form>
+<br><br><br><br><br>
+<?php
+	include(dirname(__FILE__).'/contact.php');
+?>
 </div>

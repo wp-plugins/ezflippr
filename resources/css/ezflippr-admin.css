@@ -54,3 +54,20 @@ table.ezf-settings tr th {
 table.ezf-settings tr th {
   text-align: left;
 }
+.ezflippr-settings h2 {
+  margin-top: 32px;
+}
+.ezflippr-settings textarea {
+  width: 100%;
+  height: 200px;
+}
+.ezflippr-settings ol > li {
+  font-style: italic;
+}
+.ezflippr-settings input[type=email] {
+  width: 25%;
+  min-width: 200px;
+}
+.ezflippr-settings input[type=text] {
+  width: 100%;
+}

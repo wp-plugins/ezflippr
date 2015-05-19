@@ -3,7 +3,7 @@
 * Plugin Name: ezFlippr
 * Plugin URI: http://www.nuagelab.com/wordpress-plugins/ezflippr
 * Description: Adds rich flipbooks made from PDF through ezFlippr.com
-* Version: 1.1.7
+* Version: 1.1.8
 * Author: NuageLab <wordpress-plugins@nuagelab.com>
 * Author URI: http://www.nuagelab.com/wordpress-plugins
 * License: GPL2
@@ -25,12 +25,12 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 define("__EZFLIPPR_PLUGIN_NAME__", "ezFlippr");
 define("__EZFLIPPR_PLUGIN_SLUG__", "ezflippr");
-define( '__EZFLIPPR_VERSION__', 1.0);
-define( '__EZFLIPPR_DIR__', plugin_dir_path( __FILE__) );
-define( '__EZFLIPPR_URL__', plugin_dir_url( __FILE__) );
-define( '__EZFLIPPR_ROOT__', trailingslashit( plugins_url( '', __FILE__ ) ) );
-define( '__EZFLIPPR_RESOURCES__', __EZFLIPPR_ROOT__ . 'resources/' );
-define( '__EZFLIPPR_IMAGES__', __EZFLIPPR_RESOURCES__ . 'images/' );
+define('__EZFLIPPR_VERSION__', 1.0);
+define('__EZFLIPPR_DIR__', plugin_dir_path( __FILE__) );
+define('__EZFLIPPR_URL__', plugin_dir_url( __FILE__) );
+define('__EZFLIPPR_ROOT__', trailingslashit( plugins_url('', __FILE__ ) ) );
+define('__EZFLIPPR_RESOURCES__', __EZFLIPPR_ROOT__ . 'resources/');
+define('__EZFLIPPR_IMAGES__', __EZFLIPPR_RESOURCES__ . 'images/');
 define("__EZFLIPPR_DEBUG__", false);
 define("__EZFLIPPR_TEST__", false);
 define("__EZFLIPPR_STAGING__", false);
@@ -51,7 +51,7 @@ if (class_exists('ezFlippr', false)) {
  */
 if (defined('WP_INSTALLING') && WP_INSTALLING) return;
 
-class ezFlippr{
+class ezFlippr {
 
     const API_ENDPOINT  = 'https://ezflippr.com/api/';
     const API_TIMEOUT   = 400;  // seconds
@@ -63,14 +63,14 @@ class ezFlippr{
 
     public function __construct() {
         // all hooks and actions
-        add_action( 'init', array( $this, 'ezflippr_register' ) );
-        register_activation_hook( __FILE__ , array( $this, 'ezflippr_activate' ) );
-        register_deactivation_hook( __FILE__ , array( $this, 'ezflippr_deactivate' ) );
-        add_action( 'wp_enqueue_scripts', array( $this, 'ezflippr_includeResources_user' ) );
-        add_action( 'admin_enqueue_scripts', array( $this, 'ezflippr_includeResources_admin' ) );
-        add_action('plugins_loaded', array( $this, 'ezflippr_i18n' ) );
-	    add_shortcode('flipbook', array( $this, 'ezflippr_shortcode' ));
-	    add_filter('single_template', array( $this, 'ezflippr_single_template' ));
+        add_action('init', array( $this, 'ezflippr_register') );
+        register_activation_hook( __FILE__ , array( $this, 'ezflippr_activate') );
+        register_deactivation_hook( __FILE__ , array( $this, 'ezflippr_deactivate') );
+        add_action('wp_enqueue_scripts', array( $this, 'ezflippr_includeResources_user') );
+        add_action('admin_enqueue_scripts', array( $this, 'ezflippr_includeResources_admin') );
+        add_action('plugins_loaded', array( $this, 'ezflippr_i18n') );
+	    add_shortcode('flipbook', array( $this, 'ezflippr_shortcode'));
+	    add_filter('single_template', array( $this, 'ezflippr_single_template'));
     }
 
     /**
@@ -82,7 +82,7 @@ class ezFlippr{
         $domain         = __EZFLIPPR_PLUGIN_SLUG__;
         $locale         = apply_filters('plugin_locale', get_locale(), $domain);
         load_textdomain($domain, WP_LANG_DIR . '/' . $pluginDirName . "/languages/" . $domain . '-' . $locale . '.mo');
-        //load_plugin_textdomain( $domain, '', $pluginDirName . '/languages/' );
+        //load_plugin_textdomain( $domain, '', $pluginDirName . '/languages/');
 	    load_plugin_textdomain($domain, false, dirname( plugin_basename( __FILE__ ) ) . '/languages/');
     }
 
@@ -151,7 +151,7 @@ class ezFlippr{
 
 		// Set admin notice if not access key has been set
 		$accessKey = array_key_exists('ezflippr-field-key', $_POST) ? $_POST['ezflippr-field-key'] : null;
-		if (!$this->verifyAccessKey($accessKey)) {
+		if ((!$this->verifyAccessKey($accessKey)) && (@$_GET['page'] != 'ezflippr')) {
 			echo '<div class="update-nag">';
 			printf(__('The ezFlippr plugin needs to be set up in order to access your flipbooks. <a href="%1$s">Do it now</a>.',__EZFLIPPR_PLUGIN_SLUG__),
 				'/wp-admin/admin.php?page=ezflippr'
@@ -167,12 +167,58 @@ class ezFlippr{
     {
         $accessKey  = NULL;
         if (isset($_POST['ezflippr-submit']) && wp_verify_nonce($_POST['nonce'], $_POST['action'])) {
-	        self::saveSettings();
-	        $accessKey  = $_POST['ezflippr-field-key'];
+	        if (substr($_POST['action'],0,16) == 'ezflippr-contact') {
+				$message = strip_tags($_POST['message']);
+		        $message .= PHP_EOL.PHP_EOL.PHP_EOL.'----'.PHP_EOL;
+		        if (@$_POST['optout']) {
+			        $message .= '(anonymous)';
+		        } else {
+			        $message .= 'PHP: '.self::getPHPVersion().PHP_EOL;
+			        $message .= 'WordPress: '.self::getWordPressVersion().PHP_EOL;
+			        $message .= 'Plugin: '.ezFlippr::getVersion().PHP_EOL;
+			        $message .= 'Access Key: '.ezFlippr::getOption('accesskey').PHP_EOL;
+			        $message .= 'Locale: '.get_locale().PHP_EOL;
+			        $message .= 'URL: '. get_bloginfo('url') . PHP_EOL;
+		        }
+		        $message .= '----'.PHP_EOL;
+		        if ($_POST['flipbook_uuid']) {
+			        $message .= 'Flipbook: '.strip_tags($_POST['flipbook_uuid']).PHP_EOL;
+		        } else {
+			        $message .= 'Flipbook: none in particular.'.PHP_EOL;
+		        }
 
-	        if ((@$_POST['ezflippr-field-havekey'] != 1) && (isset($_POST['ezflippr-field-email']))) {
-                $this->sendAccessKey($_POST['ezflippr-field-email']);
-            }
+		        add_filter('wp_mail_from', 'custom_wp_mail_from');
+		        function custom_wp_mail_from( $original_email_address ) {
+			        return $_POST['from'];
+		        }
+		        add_filter('wp_mail_from_name', 'custom_wp_mail_from_name');
+		        function custom_wp_mail_from_name($original_name) {
+			        $current_user = wp_get_current_user();
+			        if ($current_user) {
+				        return $current_user->firstname.' '.$current_user->lastname;
+			        } else {
+				        return $original_name;
+			        }
+		        }
+		        $email = sprintf('%1$s <%2$s>',
+			        apply_filters('wp_mail_from_name', ''),
+			        apply_filters('wp_mail_from', '')
+		        );
+		        $headers = array('Bcc' => "Bcc: ".$email);
+		        wp_mail('info@ezflippr.com', strip_tags($_POST['subject']), $message, $headers);
+		        remove_filter('wp_mail_from', 'custom_wp_mail_from');
+
+		        $this->notice = __('Thank you! Your email has been sent.', __EZFLIPPR_PLUGIN_SLUG__);
+	        } else {
+		        self::saveSettings();
+		        $accessKey = $_POST['ezflippr-field-key'];
+
+		        if ( ( @$_POST['ezflippr-field-havekey'] != 1 ) && ( isset( $_POST['ezflippr-field-email'] ) ) ) {
+			        $this->sendAccessKey( $_POST['ezflippr-field-email'] );
+		        } else {
+			        $this->refreshList();
+		        }
+	        }
         } else if (isset($_POST['ezflippr-refresh']) && wp_verify_nonce($_POST['nonce'], $_POST['action'])) {
             $this->refreshList();
         }
@@ -224,20 +270,20 @@ class ezFlippr{
     public function ezflippr_register()
     {
 		// Create custom post type
-		register_post_type( 'ezflippr_flipbook',
+		register_post_type('ezflippr_flipbook',
 			array(
                     'labels' => array(
-                        'name' 					=>	__( 'Flipbooks', __EZFLIPPR_PLUGIN_SLUG__ ),
-                        'singular_name' 		=> 	__( 'Flipbook', __EZFLIPPR_PLUGIN_SLUG__ ),
-                        'edit' 					=> 	__( 'Edit', __EZFLIPPR_PLUGIN_SLUG__ ),
-                        'edit_item' 			=> 	__( 'Edit Flipbook', __EZFLIPPR_PLUGIN_SLUG__ ),
-                        'view' 					=> 	__( 'View', __EZFLIPPR_PLUGIN_SLUG__ ),
-                        'view_item' 			=> 	__( 'View Flipbook', __EZFLIPPR_PLUGIN_SLUG__ ),
-                        'not_found' 			=> 	__( 'No Flipbooks found', __EZFLIPPR_PLUGIN_SLUG__ ),
-                        'not_found_in_trash'	=> 	__( 'No Flipbooks found in Trash', __EZFLIPPR_PLUGIN_SLUG__ )
+                        'name' 					=>	__('Flipbooks', __EZFLIPPR_PLUGIN_SLUG__ ),
+                        'singular_name' 		=> 	__('Flipbook', __EZFLIPPR_PLUGIN_SLUG__ ),
+                        'edit' 					=> 	__('Edit', __EZFLIPPR_PLUGIN_SLUG__ ),
+                        'edit_item' 			=> 	__('Edit Flipbook', __EZFLIPPR_PLUGIN_SLUG__ ),
+                        'view' 					=> 	__('View', __EZFLIPPR_PLUGIN_SLUG__ ),
+                        'view_item' 			=> 	__('View Flipbook', __EZFLIPPR_PLUGIN_SLUG__ ),
+                        'not_found' 			=> 	__('No Flipbooks found', __EZFLIPPR_PLUGIN_SLUG__ ),
+                        'not_found_in_trash'	=> 	__('No Flipbooks found in Trash', __EZFLIPPR_PLUGIN_SLUG__ )
                     ),
 
-                    'label'						=>	__( 'Flipbooks', __EZFLIPPR_PLUGIN_SLUG__ ),
+                    'label'						=>	__('Flipbooks', __EZFLIPPR_PLUGIN_SLUG__ ),
                     'public' 					=>	true,
                     'publicly_queryable'        =>	true,
                     'show_ui'                   =>	true,
@@ -258,10 +304,10 @@ class ezFlippr{
 
 	    if (is_admin()) {
 		    // Add menu
-		    add_action( 'admin_menu', array( $this, 'ezflippr_add_menu' ) );
+		    add_action('admin_menu', array( $this, 'ezflippr_add_menu') );
 
 		    // Change visual
-		    add_action( 'admin_head', array( $this, 'ezflippr_admin_head' ) );
+		    add_action('admin_head', array( $this, 'ezflippr_admin_head') );
 
 		    // Add editor button
 		    add_filter('mce_external_plugins', array($this, 'tinymce_add_buttons'));
@@ -275,7 +321,7 @@ class ezFlippr{
 
 		    // Update every 4 hours
 		    if (self::getOption('lastupdate')+4*3600 < time()) {
-			    $this->refreshList();
+			    $this->refreshList(false);
 		    }
 
 		    // Check if some books have been modified
@@ -329,9 +375,9 @@ class ezFlippr{
 					echo '<code>[flipbook id="'.$id.'" width="100%" height="500"]</code>';
 				} else {
 					if (self::getPostMeta($id, 'status') < 90) {
-						_e( 'Not installed', __EZFLIPPR_PLUGIN_SLUG__ );
+						_e('Not installed', __EZFLIPPR_PLUGIN_SLUG__ );
 					} else {
-						_e( 'Expired', __EZFLIPPR_PLUGIN_SLUG__ );
+						_e('Expired', __EZFLIPPR_PLUGIN_SLUG__ );
 					}
 				}
 				break;
@@ -345,21 +391,21 @@ class ezFlippr{
 					printf('<a class="ez-btn-uninstall" href="%1$s">%2$s</a>', __EZFLIPPR_RESOURCES__ . 'install.php?post=' . $id . '&action=uninstall', __('Uninstall', __EZFLIPPR_PLUGIN_SLUG__));
 					if (self::getPostMeta($id, 'status') < 90) {
 						echo ' | ';
-						printf( '<a class="ez-btn-reinstall" href="%1$s">%2$s</a>', __EZFLIPPR_RESOURCES__ . 'install.php?post=' . $id . '&action=reinstall', __( 'Reinstall', __EZFLIPPR_PLUGIN_SLUG__ ) );
+						printf('<a class="ez-btn-reinstall" href="%1$s">%2$s</a>', __EZFLIPPR_RESOURCES__ . 'install.php?post=' . $id . '&action=reinstall', __('Reinstall', __EZFLIPPR_PLUGIN_SLUG__ ) );
 					}
 				} else {
 					if (self::getPostMeta($id, 'status') < 90) {
 						echo ' | ';
-						printf( '<a class="ez-btn-install" href="%1$s">%2$s</a>', __EZFLIPPR_RESOURCES__ . 'install.php?post=' . $id . '&action=install', __( 'Install', __EZFLIPPR_PLUGIN_SLUG__ ) );
+						printf('<a class="ez-btn-install" href="%1$s">%2$s</a>', __EZFLIPPR_RESOURCES__ . 'install.php?post=' . $id . '&action=install', __('Install', __EZFLIPPR_PLUGIN_SLUG__ ) );
 					}
                 }
 
 				if (self::getPostMeta($id, 'status') < 90) {
 					echo ' | ';
-					printf( '<a href="%1$s" target="_blank">%2$s</a>', 'https://ezflippr.com/book/' . self::getPostMeta( $id, 'uuid' ), __( 'Customize', __EZFLIPPR_PLUGIN_SLUG__ ) );
-					if ( ! self::getPostMeta( $id, 'date_bought' ) ) {
+					printf('<a href="%1$s" target="_blank">%2$s</a>', 'https://ezflippr.com/book/' . self::getPostMeta( $id, 'uuid'), __('Customize', __EZFLIPPR_PLUGIN_SLUG__ ) );
+					if ( ! self::getPostMeta( $id, 'date_bought') ) {
 						echo ' | ';
-						printf( '<a href="%1$s" target="_blank">%2$s</a>', 'https://ezflippr.com/book/' . self::getPostMeta( $id, 'uuid' ) . '#buy', __( 'Buy', __EZFLIPPR_PLUGIN_SLUG__ ) );
+						printf('<a href="%1$s" target="_blank">%2$s</a>', 'https://ezflippr.com/book/' . self::getPostMeta( $id, 'uuid') . '#buy', __('Buy', __EZFLIPPR_PLUGIN_SLUG__ ) );
 					}
 				}
 				break;
@@ -409,7 +455,7 @@ class ezFlippr{
         );
 		$atts = shortcode_atts( array_merge($styleAtts, array(
 			'id'=> '',
-		)), $atts, 'flipbook' );
+		)), $atts, 'flipbook');
 
 		if (empty($atts['id'])) return __('No ID', __EZFLIPPR_PLUGIN_SLUG__);
 
@@ -658,7 +704,7 @@ class ezFlippr{
     /**
      * Validate the access key provided by the user
      */
-	private function verifyAccessKey($key = NULL)
+	private function verifyAccessKey($key = NULL, $display=false)
 	{
 		$update     = true;
 		$force      = false;
@@ -677,12 +723,26 @@ class ezFlippr{
 			if ($lastCheck + 86400 > time()) return true;
 		}
 
+		if ($display) {
+			printf('<p class="ezflippr-loading"><img src="%1$s" alt="%2$s"> %2$s</p>',
+				__EZFLIPPR_RESOURCES__.'/images/loader-admin.gif',
+				__('Loading. Please wait...', __EZFLIPPR_PLUGIN_SLUG__)
+			);
+			@flush();
+			@ob_flush();
+		}
+
 		list($http, $result) = self::callAPI(
 			'verify_accesskey',
 			array(
 				'accesskey' => $key,
 			)
 		);
+
+		if ($display) {
+			echo "<script>jQuery('.ezflippr-loading').remove();</script>";
+		}
+
 		if ($http < 400) {
             if ($force) self::setOption('accesskey', $key);
 			if ($update) self::setOption('accesskey-lastcheck', time());
@@ -696,14 +756,27 @@ class ezFlippr{
     /**
      * Get the list of flipbooks
      */
-    public function refreshList()
+    public function refreshList($progress=true)
     {
+	    if ($progress) {
+		    printf('<p class="ezflippr-loading"><img src="%1$s" alt="%2$s"> %2$s</p>',
+			    __EZFLIPPR_RESOURCES__.'/images/loader-admin.gif',
+			    __('Loading. Please wait...', __EZFLIPPR_PLUGIN_SLUG__)
+		    );
+		    @flush();
+		    @ob_flush();
+	    }
+
 		list($http, $result) = self::callAPI(
 			'get_flipbooks',
 			array(
 				'accesskey' => self::getOption('accesskey')
 			)
 		);
+
+	    if ($progress) {
+		    echo "<script>jQuery('.ezflippr-loading').remove();</script>";
+	    }
 
 	    $modified = array();
 
@@ -760,6 +833,7 @@ class ezFlippr{
 			self::setOption('books', json_encode($store));
 			self::setOption('lastupdate', time());
 			self::setOption('modified', serialize($modified));
+
 			return true;
 		} else {
 			return false;
@@ -890,6 +964,45 @@ class ezFlippr{
             self::setOption("email", $_POST['ezflippr-field-email']);
         }
     }
+
+	private static function getFlipbookCount()
+	{
+		$data = self::getOption('counts');
+		if (!$data) $data = array('expiry'=>0);
+
+		if ($data['expiry'] < time()) {
+			list($http,$result) = self::callAPI(
+				'count_flipbooks',
+				array(
+				)
+			);
+			if ($http <= 400) {
+				$data = get_object_vars($result);
+				$data['expiry'] = time()+4*3600;
+				self::setOption('counts', $data);
+			} else {
+				if (!$data) {
+					$data = array('books'=>'16000', 'installs'=>250);
+				}
+			}
+		}
+
+		return $data;
+	}
+
+	private static function getWordPressVersion() {
+		$version = get_bloginfo('version');
+		if (defined('ICL_LANGUAGE_CODE')) $version .= '/wpml';
+		if (function_exists('qtrans_getLanguage')) $version .= '/qtranslate';
+		return $version;
+	}
+
+	private static function getPHPVersion() {
+		$version = phpversion();
+		if (function_exists('curl_exec')) $version .= '/curl';
+		if (ini_get('allow_url_fopen')) $version .= '/url_fopen';
+		return $version;
+	}
 
 	private static function getVersion() {
 		if (!isset(self::$version)) {
