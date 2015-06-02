@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ezFlippr\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-17 23:51-0500\n"
-"PO-Revision-Date: 2015-05-17 23:51-0500\n"
+"POT-Creation-Date: 2015-06-02 14:21-0500\n"
+"PO-Revision-Date: 2015-06-02 14:22-0500\n"
 "Last-Translator: Tommy Lacroix <tlacroix@nuagelab.com>\n"
 "Language-Team: NuageLab <wordpress-plugins@nuagelab.com>\n"
 "Language: es\n"
@@ -73,194 +73,196 @@ msgstr ""
 "El plugin ezFlippr necesita ser establecido con el fin de acceder a sus "
 "libros animados. <a href=\"%1$s\">Hazlo ahora</a>."
 
-#: ../ezflippr.php:211
+#: ../ezflippr.php:168 ../ezflippr.php:632 ../ezflippr.php:953
+msgid ""
+"No communication methods supported by your PHP installation. Please install "
+"the php_curl extension, or enable allow_url_fopen and enable the php_openssl "
+"extension."
+msgstr ""
+"No hay métodos de comunicación con el apoyo de su instalación de PHP. Por "
+"favor, instale la extensión php_curl, o habilitar allow_url_fopen y la "
+"extensión php_openssl."
+
+#: ../ezflippr.php:223
 msgid "Thank you! Your email has been sent."
 msgstr "Gracias! su Gracias! Tu correo ha sido enviado."
 
-#: ../ezflippr.php:227
+#: ../ezflippr.php:239
 msgid "The access key you entered is invalid"
 msgstr "La clave de acceso que ha ingresado no es válido"
 
-#: ../ezflippr.php:276 ../ezflippr.php:286
+#: ../ezflippr.php:288 ../ezflippr.php:298
 msgid "Flipbooks"
 msgstr "Libros animados"
 
-#: ../ezflippr.php:277 ../ezflippr.php:627
+#: ../ezflippr.php:289 ../ezflippr.php:672
 msgid "Flipbook"
 msgstr "Libro animado"
 
-#: ../ezflippr.php:278 ../ezflippr.php:385
+#: ../ezflippr.php:290 ../ezflippr.php:402
 msgid "Edit"
 msgstr "Editar"
 
-#: ../ezflippr.php:279
+#: ../ezflippr.php:291
 msgid "Edit Flipbook"
 msgstr "Editar el libro animado"
 
-#: ../ezflippr.php:280 ../ezflippr.php:389
+#: ../ezflippr.php:292 ../ezflippr.php:406
 msgid "View"
 msgstr "Ver"
 
-#: ../ezflippr.php:281
+#: ../ezflippr.php:293
 msgid "View Flipbook"
 msgstr "Ver el libro animado"
 
-#: ../ezflippr.php:282
+#: ../ezflippr.php:294
 msgid "No Flipbooks found"
 msgstr "No se encuentran libros animados"
 
-#: ../ezflippr.php:283
+#: ../ezflippr.php:295
 msgid "No Flipbooks found in Trash"
 msgstr "No se encuentran libros animados en la papelera"
 
-#: ../ezflippr.php:301
+#: ../ezflippr.php:313
 msgid "Flipbooks imported from ezFlippr.com"
 msgstr "Libros animados importado de ezFlippr.com"
 
-#: ../ezflippr.php:358
+#: ../ezflippr.php:375
 msgid "Status"
 msgstr "Estado"
 
-#: ../ezflippr.php:359
+#: ../ezflippr.php:376
 msgid "Actions"
 msgstr "Acciones"
 
-#: ../ezflippr.php:373
+#: ../ezflippr.php:390
 msgid "Installed"
 msgstr "Instalado"
 
-#: ../ezflippr.php:378
+#: ../ezflippr.php:395
 msgid "Not installed"
 msgstr "No instalado"
 
-#: ../ezflippr.php:380
+#: ../ezflippr.php:397
 msgid "Expired"
 msgstr "Expirado"
 
-#: ../ezflippr.php:391
+#: ../ezflippr.php:408
 msgid "Uninstall"
 msgstr "Desinstalar"
 
-#: ../ezflippr.php:394
+#: ../ezflippr.php:411
 msgid "Reinstall"
 msgstr "Reinstalar"
 
-#: ../ezflippr.php:399
+#: ../ezflippr.php:416
 msgid "Install"
 msgstr "Instalar"
 
-#: ../ezflippr.php:405
+#: ../ezflippr.php:422
 msgid "Customize"
 msgstr "Personalizar"
 
-#: ../ezflippr.php:408
+#: ../ezflippr.php:425
 msgid "Buy"
 msgstr "Comprar"
 
-#: ../ezflippr.php:460
+#: ../ezflippr.php:477
 msgid "No ID"
 msgstr "No ID"
 
-#: ../ezflippr.php:484
+#: ../ezflippr.php:501
 msgid "Please enable JavaScript"
 msgstr "Por favor, active JavaScript"
 
-#: ../ezflippr.php:587 ../ezflippr.php:908
-msgid ""
-"No communication methods supported. Install php_curl or enable "
-"allow_url_fopen"
-msgstr ""
-"No hay métodos de comunicación compatibles. Instale php_curl o habilite "
-"allow_url_fopen."
-
-#: ../ezflippr.php:624
+#: ../ezflippr.php:669
 msgid "Select your flipbook"
 msgstr "Seleccione su libro animado"
 
-#: ../ezflippr.php:640
+#: ../ezflippr.php:685
 msgid "Adjust flipbook size"
 msgstr "Ajuste el tamaño del libro animado"
 
-#: ../ezflippr.php:642
+#: ../ezflippr.php:687
 msgid "Width"
 msgstr "Anchura"
 
-#: ../ezflippr.php:645 ../ezflippr.php:654
+#: ../ezflippr.php:690 ../ezflippr.php:699
 msgid "pixels"
 msgstr "píxeles"
 
-#: ../ezflippr.php:651
+#: ../ezflippr.php:696
 msgid "Height"
 msgstr "Altura"
 
-#: ../ezflippr.php:663
+#: ../ezflippr.php:708
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: ../ezflippr.php:666
+#: ../ezflippr.php:711
 msgid "Insert"
 msgstr "Insertar"
 
-#: ../ezflippr.php:669
+#: ../ezflippr.php:714
 msgid "Install a flipbook in the Flipbooks menu first."
 msgstr ""
 "Primero, tiene que instalar un libro animado en el menú Libros animados."
 
-#: ../ezflippr.php:670
+#: ../ezflippr.php:715
 msgid "Insert a flipbook"
 msgstr "Insertar un libro animado"
 
-#: ../ezflippr.php:671
+#: ../ezflippr.php:716
 msgid "Flipbook titled \"%title%\""
 msgstr "Libro animado titulado \"%title%\""
 
-#: ../ezflippr.php:700
+#: ../ezflippr.php:745
 msgid "Check your email, your access key has been sent!"
 msgstr "Revise su correo electrónico, su clave de acceso ha sido enviado!"
 
-#: ../ezflippr.php:729 ../ezflippr.php:764
+#: ../ezflippr.php:774 ../ezflippr.php:809
 msgid "Loading. Please wait..."
 msgstr "Cargando. Un momeno por favor..."
 
-#: ../ezflippr.php:946
+#: ../ezflippr.php:991
 #, php-format
 msgid "%d years ago"
 msgstr "hace %d años"
 
-#: ../ezflippr.php:949
+#: ../ezflippr.php:994
 #, php-format
 msgid "%d months ago"
 msgstr "hace %d meses"
 
-#: ../ezflippr.php:950
+#: ../ezflippr.php:995
 #, php-format
 msgid "%d weeks ago"
 msgstr "hace %d semanas"
 
-#: ../ezflippr.php:951
+#: ../ezflippr.php:996
 #, php-format
 msgid "%d days ago"
 msgstr "hace %d dias"
 
-#: ../ezflippr.php:952
+#: ../ezflippr.php:997
 #, php-format
 msgid "%d hours ago"
 msgstr "hace %d horas"
 
-#: ../ezflippr.php:953
+#: ../ezflippr.php:998
 #, php-format
 msgid "%d minutes ago"
 msgstr "hace %d minutos"
 
-#: ../ezflippr.php:954
+#: ../ezflippr.php:999
 msgid "moments ago"
 msgstr "have un momentito"
 
-#: ../ezflippr.php:956
+#: ../ezflippr.php:1001
 msgid "Never"
 msgstr "Jamás"
 
-#: ../ezflippr.php:958
+#: ../ezflippr.php:1003
 #, php-format
 msgid "Your flipbooks list was last refreshed %1$s."
 msgstr "Su lista de libros animados última actualización estaba %1$s."
@@ -419,42 +421,42 @@ msgstr "Ajustes"
 msgid "Refresh"
 msgstr "Actualizar"
 
-#: ../resources/admin/includes/settings-validkey.php:48
-msgid "Want rebates? Like us on Facebook"
-msgstr ""
-"¿Quieres descuentos? Hace un \"Like\" sobre nuestra página de Facebook "
+#~ msgid ""
+#~ "No communication methods supported. Install php_curl or enable "
+#~ "allow_url_fopen"
+#~ msgstr ""
+#~ "No hay métodos de comunicación compatibles. Instale php_curl o habilite "
+#~ "allow_url_fopen."
 
-#: ../resources/admin/includes/settings-validkey.php:50
-#, php-format
-msgid ""
-"Although made more than %1$s flipbooks and have more than %2$s sites install "
-"our plugin, we are still a small startup devoted to make flipbooks "
-"accessible."
-msgstr ""
-"Aunque hemos realizado más de %1$s libros animados y tenemos más de %2$s "
-"sitios utilizando nuestro plugin de WordPress, todavía somos una pequeña "
-"empresa dedicada a hacer libros animados accesible."
+#~ msgid "Want rebates? Like us on Facebook"
+#~ msgstr ""
+#~ "¿Quieres descuentos? Hace un \"Like\" sobre nuestra página de Facebook "
 
-#: ../resources/admin/includes/settings-validkey.php:52
-#, php-format
-msgid ""
-"Like us on <a href=\"%3$s\" target=\"_blank\">Facebook</a>, we'll like you "
-"back by regularly post $5 to $15 rebates. "
-msgstr ""
-"Hace on \"Like\" en el <a href=\"%3$s\" target=\"_blank\">Facebook</a>, y te "
-"haremos bien. Publicamos regularmente descuentos de $5 a $15 en nuestra "
-"página Facebook."
+#~ msgid ""
+#~ "Although made more than %1$s flipbooks and have more than %2$s sites "
+#~ "install our plugin, we are still a small startup devoted to make "
+#~ "flipbooks accessible."
+#~ msgstr ""
+#~ "Aunque hemos realizado más de %1$s libros animados y tenemos más de %2$s "
+#~ "sitios utilizando nuestro plugin de WordPress, todavía somos una pequeña "
+#~ "empresa dedicada a hacer libros animados accesible."
 
-#: ../resources/admin/includes/settings-validkey.php:53
-#, php-format
-msgid ""
-"And if you like it, please give a good rating to our <a href=\"%4$s\" target="
-"\"_blank\">plugin</a> or send us comments and suggestions so it does "
-"everything you want it to do."
-msgstr ""
-"Y si le gusta usted, por favor, dale una buena calificación en nuestro <a "
-"href=\"%4$s\" target=\"_blank\">plugin de WordPress</a>, o envié nos "
-"comentarios y sugerencias por lo que hace todo lo que quieras que haga."
+#~ msgid ""
+#~ "Like us on <a href=\"%3$s\" target=\"_blank\">Facebook</a>, we'll like "
+#~ "you back by regularly post $5 to $15 rebates. "
+#~ msgstr ""
+#~ "Hace on \"Like\" en el <a href=\"%3$s\" target=\"_blank\">Facebook</a>, y "
+#~ "te haremos bien. Publicamos regularmente descuentos de $5 a $15 en "
+#~ "nuestra página Facebook."
+
+#~ msgid ""
+#~ "And if you like it, please give a good rating to our <a href=\"%4$s\" "
+#~ "target=\"_blank\">plugin</a> or send us comments and suggestions so it "
+#~ "does everything you want it to do."
+#~ msgstr ""
+#~ "Y si le gusta usted, por favor, dale una buena calificación en nuestro <a "
+#~ "href=\"%4$s\" target=\"_blank\">plugin de WordPress</a>, o envié nos "
+#~ "comentarios y sugerencias por lo que hace todo lo que quieras que haga."
 
 #~ msgid ""
 #~ "Altough made more than %1$s flipbooks and have more than %2$s sites "

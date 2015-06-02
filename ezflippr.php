@@ -3,7 +3,7 @@
 * Plugin Name: ezFlippr
 * Plugin URI: http://www.nuagelab.com/wordpress-plugins/ezflippr
 * Description: Adds rich flipbooks made from PDF through ezFlippr.com
-* Version: 1.1.8
+* Version: 1.1.9
 * Author: NuageLab <wordpress-plugins@nuagelab.com>
 * Author URI: http://www.nuagelab.com/wordpress-plugins
 * License: GPL2
@@ -158,6 +158,18 @@ class ezFlippr {
 			);
 			echo '</div>';
 		}
+	}
+
+	/**
+	 * Add the no communication method notice if necessary
+	 */
+	public function ezflippr_no_communication_notice()
+	{
+		$str = __('No communication methods supported by your PHP installation. Please install the php_curl extension, or enable allow_url_fopen and enable the php_openssl extension.', __EZFLIPPR_PLUGIN_SLUG__);
+
+		echo '<div class="update-nag">';
+		echo $str;
+		echo '</div>';
 	}
 
     /**
@@ -326,6 +338,11 @@ class ezFlippr {
 
 		    // Check if some books have been modified
 		    add_action('admin_notices', array(&$this, 'ezflippr_add_modified_notice'));
+
+		    // Check compatibility
+		    if ((!self::supportsCurl()) && (!self::supportsHttpHandler())) {
+			    add_action('admin_notices', array(&$this, 'ezflippr_no_communication_notice'));
+		    }
 	    }
     }
 
@@ -491,7 +508,7 @@ class ezFlippr {
      * Writes to the file /tmp/log.log if DEBUG is on
      */
     public static function writeDebug($msg) {
-        if (__EZFLIPPR_DEBUG__) file_put_contents(__EZFLIPPR_DIR__ . "/tmp/log.log", date('F j, Y H:i:s') . " - " . $msg."\n", FILE_APPEND);
+        if (__EZFLIPPR_DEBUG__) @file_put_contents(__EZFLIPPR_DIR__ . "/tmp/log.log", date('F j, Y H:i:s') . " - " . $msg."\n", FILE_APPEND);
     }
 
     /**
@@ -529,17 +546,47 @@ class ezFlippr {
         update_post_meta($postID, __EZFLIPPR_PLUGIN_SLUG__ . '_' . $name, $value);
     }
 
+	/**
+	 * Check if cURL is supported
+	 *
+	 * @return bool
+	 */
+	public static function supportsCurl()
+	{
+		return function_exists('curl_exec');
+	}
+
+	/**
+	 * Check if stream_copy_to_stream is supported
+	 *
+	 * @return bool
+	 */
+	public static function supportsStreamCopy()
+	{
+		return (function_exists('stream_copy_to_stream')) && (ini_get('allow_url_fopen')) && (function_exists('openssl_open'));
+	}
+
+	/**
+	 * Check if HTTP & HTTPS handlers is supported
+	 *
+	 * @return bool
+	 */
+	public static function supportsHttpHandler()
+	{
+		return (function_exists('file_get_contents')) && (ini_get('allow_url_fopen')) && (function_exists('openssl_open'));
+	}
+
     /**
      * The API helper
      * 
      * @return array
      */
-    static function callAPI($func, $params=null) {
+    public static function callAPI($func, $params=null) {
         $method = NULL;
         $error  = -1;
 
         $url    = self::API_ENDPOINT . $func;
-        if (function_exists('curl_exec')) {
+        if (self::supportsCurl()) {
             $method = "cURL";
             $conn = curl_init($url);
             curl_setopt($conn, CURLOPT_SSL_VERIFYPEER, false);
@@ -561,7 +608,7 @@ class ezFlippr {
                 self::writeDebug("curl_errno ".curl_error($conn));
             }
             curl_close($conn);
-        } elseif ((function_exists('file_get_contents')) && (ini_get('allow_url_fopen'))) {
+        } elseif (self::supportsHttpHandler()) {
             $method = "file_get_contents";
 	        $opts = array(
 		        'http'=>array(
@@ -570,10 +617,6 @@ class ezFlippr {
 	        );
 	        $context = stream_context_create($opts);
 	        $response = file_get_contents($url, false, $context);
-        } elseif (function_exists('fopen') && function_exists('stream_get_contents') && ini_get('allow_url_fopen')) {
-            $method = "fopen";
-            $handle = fopen ($url, "r");
-            $response = stream_get_contents($handle);
         } else {
             $response = false;
         }
@@ -584,7 +627,7 @@ class ezFlippr {
 			$response   = json_decode($response);
 			return array($error, $response);
         }else{
-            return array(500, __('No communication methods supported. Install php_curl or enable allow_url_fopen', __EZFLIPPR_PLUGIN_SLUG__));
+            return array(500, __('No communication methods supported by your PHP installation. Please install the php_curl extension, or enable allow_url_fopen and enable the php_openssl extension.', __EZFLIPPR_PLUGIN_SLUG__));
         }
     }
 
@@ -874,12 +917,13 @@ class ezFlippr {
 	                @mkdir($dir, 0755, true);
                     foreach ($result->files as $name=>$file) {
                         @mkdir(dirname($dir . DIRECTORY_SEPARATOR . $name), 0755, true);
-	                    if (function_exists('curl_exec')) {
+	                    if (self::supportsHttpHandler()) {
 		                    $fp = fopen($dir . DIRECTORY_SEPARATOR . $name, 'w+');
 		                    $ch = curl_init(str_replace(" ","%20",$file));
 		                    curl_setopt($ch, CURLOPT_TIMEOUT, 50);
 		                    curl_setopt($ch, CURLOPT_FILE, $fp); // write curl response to file
 		                    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+		                    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 		                    curl_setopt($ch, CURLOPT_USERAGENT, 'ezflippr-wp ('.self::getVersion().')');
 		                    try{
 			                    curl_exec($ch);
@@ -896,16 +940,16 @@ class ezFlippr {
 		                    }
 		                    curl_close($ch);
 		                    fclose($fp);
-	                    } else if (function_exists('fopen') && function_exists('stream_copy_to_stream') && ini_get('allow_url_fopen')) {
+	                    } else if (self::supportsStreamCopy()) {
 		                    $fp = fopen($dir . DIRECTORY_SEPARATOR . $name, 'w+');
 		                    $ht = fopen($file, 'r', false, $context);
 		                    stream_copy_to_stream($ht , $fp);
 		                    fclose($fp);
 		                    fclose($ht);
-	                    } else if (function_exists('file_get_contents') && ini_get('allow_url_fopen')) {
+	                    } else if (self::supportsHttpHandler()) {
 		                    file_put_contents($dir . DIRECTORY_SEPARATOR . $name, file_get_contents($file, false, $context));
 	                    } else {
-		                    die(__('No communication methods supported. Install php_curl or enable allow_url_fopen', __EZFLIPPR_PLUGIN_SLUG__));
+		                    die(__('No communication methods supported by your PHP installation. Please install the php_curl extension, or enable allow_url_fopen and enable the php_openssl extension.', __EZFLIPPR_PLUGIN_SLUG__));
 	                    }
 
                     }
@@ -1001,6 +1045,7 @@ class ezFlippr {
 		$version = phpversion();
 		if (function_exists('curl_exec')) $version .= '/curl';
 		if (ini_get('allow_url_fopen')) $version .= '/url_fopen';
+		if (function_exists('openssl_open')) $version .= '/openssl';
 		return $version;
 	}
 
