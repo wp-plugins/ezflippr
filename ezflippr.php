@@ -3,7 +3,7 @@
 * Plugin Name: ezFlippr
 * Plugin URI: http://www.nuagelab.com/wordpress-plugins/ezflippr
 * Description: Adds rich flipbooks made from PDF through ezFlippr.com
-* Version: 1.1.9
+* Version: 1.1.10
 * Author: NuageLab <wordpress-plugins@nuagelab.com>
 * Author URI: http://www.nuagelab.com/wordpress-plugins
 * License: GPL2
@@ -59,13 +59,16 @@ class ezFlippr {
     private $error;
     private $notice;
 
+	private $can_download = false;
+	private $can_write = false;
+
 	private static $version = null;
 
     public function __construct() {
         // all hooks and actions
         add_action('init', array( $this, 'ezflippr_register') );
         register_activation_hook( __FILE__ , array( $this, 'ezflippr_activate') );
-        register_deactivation_hook( __FILE__ , array( $this, 'ezflippr_deactivate') );
+	    register_uninstall_hook( __FILE__ , array( get_class($this), 'ezflippr_deactivate') );
         add_action('wp_enqueue_scripts', array( $this, 'ezflippr_includeResources_user') );
         add_action('admin_enqueue_scripts', array( $this, 'ezflippr_includeResources_admin') );
         add_action('plugins_loaded', array( $this, 'ezflippr_i18n') );
@@ -163,13 +166,34 @@ class ezFlippr {
 	/**
 	 * Add the no communication method notice if necessary
 	 */
-	public function ezflippr_no_communication_notice()
+	public function ezflippr_intallation_check()
 	{
-		$str = __('No communication methods supported by your PHP installation. Please install the php_curl extension, or enable allow_url_fopen and enable the php_openssl extension.', __EZFLIPPR_PLUGIN_SLUG__);
+		if ((!self::supportsCurl()) && (!self::supportsHttpHandler())) {
+			$str = __( 'No communication methods supported by your PHP installation. Please install the php_curl extension, or enable allow_url_fopen and enable the php_openssl extension.', __EZFLIPPR_PLUGIN_SLUG__ );
 
-		echo '<div class="update-nag">';
-		echo $str;
-		echo '</div>';
+			echo '<div class="update-nag">';
+			echo $str;
+			echo '</div>';
+		} else $this->can_download = true;
+
+		$wpUploads  = wp_upload_dir();
+		$up_dir        = $wpUploads['basedir'];
+		$ez_dir        = $up_dir . DIRECTORY_SEPARATOR  . __EZFLIPPR_PLUGIN_SLUG__;
+		@mkdir($ez_dir, 0755, true);
+		$error = false;
+		if (!file_exists($ez_dir)) {
+			$err = error_get_last();
+			$error = sprintf(__('Cannot create the directory to hold the flipbooks. Please make sure that your uploads directory is writable (wp-content/uploads).<br/>Error message is: <code>%1$s</code>.'), $err['message']);
+		} else if (!is_writable($ez_dir)) {
+			$error = sprintf(__('The ezFlippr directory is not writable (wp-content/uploads/%1$s). Please make it writable through FTP (chmod) or else.'),
+				__EZFLIPPR_PLUGIN_SLUG__
+			);
+		}
+		if ($error) {
+			echo '<div class="update-nag">';
+			echo $error;
+			echo '</div>';
+		} else $this->can_write = true;
 	}
 
     /**
@@ -340,9 +364,7 @@ class ezFlippr {
 		    add_action('admin_notices', array(&$this, 'ezflippr_add_modified_notice'));
 
 		    // Check compatibility
-		    if ((!self::supportsCurl()) && (!self::supportsHttpHandler())) {
-			    add_action('admin_notices', array(&$this, 'ezflippr_no_communication_notice'));
-		    }
+		    add_action('admin_notices', array(&$this, 'ezflippr_intallation_check'));
 	    }
     }
 
@@ -406,12 +428,12 @@ class ezFlippr {
 					printf('<a href="%1$s">%2$s</a>', get_permalink($id), __('View', __EZFLIPPR_PLUGIN_SLUG__));
 					echo ' | ';
 					printf('<a class="ez-btn-uninstall" href="%1$s">%2$s</a>', __EZFLIPPR_RESOURCES__ . 'install.php?post=' . $id . '&action=uninstall', __('Uninstall', __EZFLIPPR_PLUGIN_SLUG__));
-					if (self::getPostMeta($id, 'status') < 90) {
+					if (($this->can_download && $this->can_write) && (self::getPostMeta($id, 'status') < 90)) {
 						echo ' | ';
 						printf('<a class="ez-btn-reinstall" href="%1$s">%2$s</a>', __EZFLIPPR_RESOURCES__ . 'install.php?post=' . $id . '&action=reinstall', __('Reinstall', __EZFLIPPR_PLUGIN_SLUG__ ) );
 					}
 				} else {
-					if (self::getPostMeta($id, 'status') < 90) {
+					if (($this->can_download && $this->can_write) && (self::getPostMeta($id, 'status') < 90)) {
 						echo ' | ';
 						printf('<a class="ez-btn-install" href="%1$s">%2$s</a>', __EZFLIPPR_RESOURCES__ . 'install.php?post=' . $id . '&action=install', __('Install', __EZFLIPPR_PLUGIN_SLUG__ ) );
 					}
@@ -442,7 +464,7 @@ class ezFlippr {
     /**
      * Deactivate the plugin
      */
-    public function ezflippr_deactivate()
+    public static function ezflippr_deactivate()
     {
         if (__EZFLIPPR_TEST__ || __EZFLIPPR_STAGING__) {
             define("WP_UNINSTALL_PLUGIN", true);

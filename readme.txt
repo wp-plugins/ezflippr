@@ -87,6 +87,9 @@ CURL is installed by default with MAMP.
 This plugin is available in English, French and Spanish. If you want to help with translation in other languages, we'll be happy to hear from you.
 
 == Changelog ==
+= 1.1.10 =
+* Added uploads directory writability verification and warning messages
+
 = 1.1.9 =
 * Added detection for php_openssl, which is required when cURL is not available and we must use the URL wrappers.
 
@@ -127,6 +130,9 @@ This plugin is available in English, French and Spanish. If you want to help wit
 * First released version. Tested internally with about 10 sites.
 
 == Upgrade Notice ==
+= 1.1.10 =
+* Added uploads directory writability verification and warning messages
+
 = 1.1.8 =
 * Added contact form in ezFlippr menu
 * Added loading message during refresh and key verification

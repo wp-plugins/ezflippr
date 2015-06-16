@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ezFlippr\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-02 14:21-0500\n"
-"PO-Revision-Date: 2015-06-02 14:22-0500\n"
+"POT-Creation-Date: 2015-06-16 12:45-0500\n"
+"PO-Revision-Date: 2015-06-16 12:47-0500\n"
 "Last-Translator: Tommy Lacroix <tlacroix@nuagelab.com>\n"
 "Language-Team: NuageLab <wordpress-plugins@nuagelab.com>\n"
 "Language: es\n"
@@ -21,23 +21,23 @@ msgstr ""
 "X-Poedit-KeywordsList: __;_e;_n\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../ezflippr.php:110
+#: ../ezflippr.php:113
 msgid "Installing..."
 msgstr "Instalación..."
 
-#: ../ezflippr.php:111
+#: ../ezflippr.php:114
 msgid "Reinstalling..."
 msgstr "Reinstalación..."
 
-#: ../ezflippr.php:112
+#: ../ezflippr.php:115
 msgid "Uninstalling..."
 msgstr "Desinstalación..."
 
-#: ../ezflippr.php:113
+#: ../ezflippr.php:116
 msgid "Please wait..."
 msgstr "Un momento por favor..."
 
-#: ../ezflippr.php:137
+#: ../ezflippr.php:140
 #, php-format
 msgid ""
 "Your flipbook named \"<a target=\"_blank\" href=\"%4$s\">%1$s</a>\" has been "
@@ -46,7 +46,7 @@ msgstr ""
 "Su libro animado llamado \"<a target=\"_blank\" href=\"%4$s\">%1$s</a>\" ha "
 "sido modificado."
 
-#: ../ezflippr.php:138
+#: ../ezflippr.php:141
 #, php-format
 msgid ""
 "Your flipbook named \"<a target=\"_blank\" href=\"%4$s\">%1$s</a>\" has been "
@@ -55,7 +55,7 @@ msgstr ""
 "Su libro animado llamado \"<a target=\"_blank\" href=\"%4$s\">%1$s</a>\" ha "
 "sido comprado."
 
-#: ../ezflippr.php:139
+#: ../ezflippr.php:142
 #, php-format
 msgid ""
 "<a href=\"%2$s\">Click here</a> to reinstall it, or <a href=\"%3$s\">here to "
@@ -64,7 +64,7 @@ msgstr ""
 "<a href=\"%2$s\">Haga clic aquí</a> para  reinstalarlo, o <a href=\"%3$s"
 "\">aquí para despedir a este aviso</a>."
 
-#: ../ezflippr.php:156
+#: ../ezflippr.php:159
 #, php-format
 msgid ""
 "The ezFlippr plugin needs to be set up in order to access your flipbooks. <a "
@@ -73,7 +73,7 @@ msgstr ""
 "El plugin ezFlippr necesita ser establecido con el fin de acceder a sus "
 "libros animados. <a href=\"%1$s\">Hazlo ahora</a>."
 
-#: ../ezflippr.php:168 ../ezflippr.php:632 ../ezflippr.php:953
+#: ../ezflippr.php:172 ../ezflippr.php:652 ../ezflippr.php:974
 msgid ""
 "No communication methods supported by your PHP installation. Please install "
 "the php_curl extension, or enable allow_url_fopen and enable the php_openssl "
@@ -83,186 +83,207 @@ msgstr ""
 "favor, instale la extensión php_curl, o habilitar allow_url_fopen y la "
 "extensión php_openssl."
 
-#: ../ezflippr.php:223
+#: ../ezflippr.php:186
+#, php-format
+msgid ""
+"Cannot create the directory to hold the flipbooks. Please make sure that "
+"your uploads directory is writable (wp-content/uploads).<br/>Error message "
+"is: <code>%1$s</code>."
+msgstr ""
+"No se puede crear directorio para contener los libros animados. Asegúrese de "
+"que WordPress puede escribir en el directorio <i>uploads</i> (wp-content/"
+"uploads)<br/>El mensaje de error es: <code>%1$s</code>."
+
+#: ../ezflippr.php:188
+#, php-format
+msgid ""
+"The ezFlippr directory is not writable (wp-content/uploads/%1$s). Please "
+"make it writable through FTP (chmod) or else."
+msgstr ""
+"WordPress no puede escribir en el directorio ezFlippr (wp-content/uploads/"
+"%1$s). Usted tendrá que habilitar la escritura en ese directorio utilizando "
+"software FTP (chmod) o de otra manera."
+
+#: ../ezflippr.php:247
 msgid "Thank you! Your email has been sent."
 msgstr "Gracias! su Gracias! Tu correo ha sido enviado."
 
-#: ../ezflippr.php:239
+#: ../ezflippr.php:263
 msgid "The access key you entered is invalid"
 msgstr "La clave de acceso que ha ingresado no es válido"
 
-#: ../ezflippr.php:288 ../ezflippr.php:298
+#: ../ezflippr.php:312 ../ezflippr.php:322
 msgid "Flipbooks"
 msgstr "Libros animados"
 
-#: ../ezflippr.php:289 ../ezflippr.php:672
+#: ../ezflippr.php:313 ../ezflippr.php:692
 msgid "Flipbook"
 msgstr "Libro animado"
 
-#: ../ezflippr.php:290 ../ezflippr.php:402
+#: ../ezflippr.php:314 ../ezflippr.php:424
 msgid "Edit"
 msgstr "Editar"
 
-#: ../ezflippr.php:291
+#: ../ezflippr.php:315
 msgid "Edit Flipbook"
 msgstr "Editar el libro animado"
 
-#: ../ezflippr.php:292 ../ezflippr.php:406
+#: ../ezflippr.php:316 ../ezflippr.php:428
 msgid "View"
 msgstr "Ver"
 
-#: ../ezflippr.php:293
+#: ../ezflippr.php:317
 msgid "View Flipbook"
 msgstr "Ver el libro animado"
 
-#: ../ezflippr.php:294
+#: ../ezflippr.php:318
 msgid "No Flipbooks found"
 msgstr "No se encuentran libros animados"
 
-#: ../ezflippr.php:295
+#: ../ezflippr.php:319
 msgid "No Flipbooks found in Trash"
 msgstr "No se encuentran libros animados en la papelera"
 
-#: ../ezflippr.php:313
+#: ../ezflippr.php:337
 msgid "Flipbooks imported from ezFlippr.com"
 msgstr "Libros animados importado de ezFlippr.com"
 
-#: ../ezflippr.php:375
+#: ../ezflippr.php:397
 msgid "Status"
 msgstr "Estado"
 
-#: ../ezflippr.php:376
+#: ../ezflippr.php:398
 msgid "Actions"
 msgstr "Acciones"
 
-#: ../ezflippr.php:390
+#: ../ezflippr.php:412
 msgid "Installed"
 msgstr "Instalado"
 
-#: ../ezflippr.php:395
+#: ../ezflippr.php:417
 msgid "Not installed"
 msgstr "No instalado"
 
-#: ../ezflippr.php:397
+#: ../ezflippr.php:419
 msgid "Expired"
 msgstr "Expirado"
 
-#: ../ezflippr.php:408
+#: ../ezflippr.php:430
 msgid "Uninstall"
 msgstr "Desinstalar"
 
-#: ../ezflippr.php:411
+#: ../ezflippr.php:433
 msgid "Reinstall"
 msgstr "Reinstalar"
 
-#: ../ezflippr.php:416
+#: ../ezflippr.php:438
 msgid "Install"
 msgstr "Instalar"
 
-#: ../ezflippr.php:422
+#: ../ezflippr.php:444
 msgid "Customize"
 msgstr "Personalizar"
 
-#: ../ezflippr.php:425
+#: ../ezflippr.php:447
 msgid "Buy"
 msgstr "Comprar"
 
-#: ../ezflippr.php:477
+#: ../ezflippr.php:499
 msgid "No ID"
 msgstr "No ID"
 
-#: ../ezflippr.php:501
+#: ../ezflippr.php:523
 msgid "Please enable JavaScript"
 msgstr "Por favor, active JavaScript"
 
-#: ../ezflippr.php:669
+#: ../ezflippr.php:689
 msgid "Select your flipbook"
 msgstr "Seleccione su libro animado"
 
-#: ../ezflippr.php:685
+#: ../ezflippr.php:705
 msgid "Adjust flipbook size"
 msgstr "Ajuste el tamaño del libro animado"
 
-#: ../ezflippr.php:687
+#: ../ezflippr.php:707
 msgid "Width"
 msgstr "Anchura"
 
-#: ../ezflippr.php:690 ../ezflippr.php:699
+#: ../ezflippr.php:710 ../ezflippr.php:719
 msgid "pixels"
 msgstr "píxeles"
 
-#: ../ezflippr.php:696
+#: ../ezflippr.php:716
 msgid "Height"
 msgstr "Altura"
 
-#: ../ezflippr.php:708
+#: ../ezflippr.php:728
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: ../ezflippr.php:711
+#: ../ezflippr.php:731
 msgid "Insert"
 msgstr "Insertar"
 
-#: ../ezflippr.php:714
+#: ../ezflippr.php:734
 msgid "Install a flipbook in the Flipbooks menu first."
 msgstr ""
 "Primero, tiene que instalar un libro animado en el menú Libros animados."
 
-#: ../ezflippr.php:715
+#: ../ezflippr.php:735
 msgid "Insert a flipbook"
 msgstr "Insertar un libro animado"
 
-#: ../ezflippr.php:716
+#: ../ezflippr.php:736
 msgid "Flipbook titled \"%title%\""
 msgstr "Libro animado titulado \"%title%\""
 
-#: ../ezflippr.php:745
+#: ../ezflippr.php:765
 msgid "Check your email, your access key has been sent!"
 msgstr "Revise su correo electrónico, su clave de acceso ha sido enviado!"
 
-#: ../ezflippr.php:774 ../ezflippr.php:809
+#: ../ezflippr.php:794 ../ezflippr.php:829
 msgid "Loading. Please wait..."
 msgstr "Cargando. Un momeno por favor..."
 
-#: ../ezflippr.php:991
+#: ../ezflippr.php:1012
 #, php-format
 msgid "%d years ago"
 msgstr "hace %d años"
 
-#: ../ezflippr.php:994
+#: ../ezflippr.php:1015
 #, php-format
 msgid "%d months ago"
 msgstr "hace %d meses"
 
-#: ../ezflippr.php:995
+#: ../ezflippr.php:1016
 #, php-format
 msgid "%d weeks ago"
 msgstr "hace %d semanas"
 
-#: ../ezflippr.php:996
+#: ../ezflippr.php:1017
 #, php-format
 msgid "%d days ago"
 msgstr "hace %d dias"
 
-#: ../ezflippr.php:997
+#: ../ezflippr.php:1018
 #, php-format
 msgid "%d hours ago"
 msgstr "hace %d horas"
 
-#: ../ezflippr.php:998
+#: ../ezflippr.php:1019
 #, php-format
 msgid "%d minutes ago"
 msgstr "hace %d minutos"
 
-#: ../ezflippr.php:999
+#: ../ezflippr.php:1020
 msgid "moments ago"
 msgstr "have un momentito"
 
-#: ../ezflippr.php:1001
+#: ../ezflippr.php:1022
 msgid "Never"
 msgstr "Jamás"
 
-#: ../ezflippr.php:1003
+#: ../ezflippr.php:1024
 #, php-format
 msgid "Your flipbooks list was last refreshed %1$s."
 msgstr "Su lista de libros animados última actualización estaba %1$s."
