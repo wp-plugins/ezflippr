@@ -3,7 +3,7 @@
 * Plugin Name: ezFlippr
 * Plugin URI: http://www.nuagelab.com/wordpress-plugins/ezflippr
 * Description: Adds rich flipbooks made from PDF through ezFlippr.com
-* Version: 1.1.10
+* Version: 1.1.11
 * Author: NuageLab <wordpress-plugins@nuagelab.com>
 * Author URI: http://www.nuagelab.com/wordpress-plugins
 * License: GPL2
@@ -500,7 +500,13 @@ class ezFlippr {
 
         $style      = "";
         foreach($styleAtts as $name=>$value) {
-            $style  .= empty($atts[$name]) ? "" : ($name . ":" . str_replace("%", "%%", $atts[$name])) . ";";
+	        if (!empty($atts[$name])) {
+		        $size = str_replace("%", "%%", $atts[$name]);
+		        if (!preg_match('/(px|em|%)$/', $size)) {
+			        $size .= 'px';
+		        }
+		        $style  .= $name . ":" . $size . ";";
+	        }
         }
 
         $post = get_post($atts['id']);

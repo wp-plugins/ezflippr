@@ -87,6 +87,9 @@ CURL is installed by default with MAMP.
 This plugin is available in English, French and Spanish. If you want to help with translation in other languages, we'll be happy to hear from you.
 
 == Changelog ==
+= 1.1.11 =
+* Fixed height problem with short code
+
 = 1.1.10 =
 * Added uploads directory writability verification and warning messages
 
@@ -130,6 +133,9 @@ This plugin is available in English, French and Spanish. If you want to help wit
 * First released version. Tested internally with about 10 sites.
 
 == Upgrade Notice ==
+= 1.1.11 =
+* Fixed height problem with short code
+
 = 1.1.10 =
 * Added uploads directory writability verification and warning messages
 
