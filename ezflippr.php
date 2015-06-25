@@ -3,7 +3,7 @@
 * Plugin Name: ezFlippr
 * Plugin URI: http://www.nuagelab.com/wordpress-plugins/ezflippr
 * Description: Adds rich flipbooks made from PDF through ezFlippr.com
-* Version: 1.1.11
+* Version: 1.1.12
 * Author: NuageLab <wordpress-plugins@nuagelab.com>
 * Author URI: http://www.nuagelab.com/wordpress-plugins
 * License: GPL2
@@ -945,7 +945,7 @@ class ezFlippr {
 	                @mkdir($dir, 0755, true);
                     foreach ($result->files as $name=>$file) {
                         @mkdir(dirname($dir . DIRECTORY_SEPARATOR . $name), 0755, true);
-	                    if (self::supportsHttpHandler()) {
+	                    if (self::supportsCurl()) {
 		                    $fp = fopen($dir . DIRECTORY_SEPARATOR . $name, 'w+');
 		                    $ch = curl_init(str_replace(" ","%20",$file));
 		                    curl_setopt($ch, CURLOPT_TIMEOUT, 50);
