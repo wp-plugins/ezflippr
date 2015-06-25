@@ -101,7 +101,15 @@
 
 		getAttr: function(s, n) {
 			n = new RegExp(n + '=\"([^\"]+)\"', 'g').exec(s);
-			return n ?  window.decodeURIComponent(n[1]) : '';
+			if (n) {
+				var n2 = n[1];
+				try {
+					n2 = window.decodeURIComponent(n[1]);
+				} catch (e) {
+					n2 = n[1];
+				}
+			}
+			return n ?  n2 : '';
 		},
 
 		getAttrSize: function(s, n, d) {
@@ -121,7 +129,7 @@
 				var con = '';
 				//var placeholder = self.url + '/img/' + self.getAttr(data,'type') + '.jpg';
 				var width = self.getAttrSize(attr, 'width', '100%');
-				var height = self.getAttrSize(attr, 'width', '500px');
+				var height = self.getAttrSize(attr, 'height', '500px');
 				var id = self.getAttr(attr, 'id');
 
 				var title;
