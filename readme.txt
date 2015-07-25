@@ -2,7 +2,7 @@
 Contributors: nuagelab
 Tags: flipbook, administration
 Requires at least: 3.6
-Tested up to: 4.2.2
+Tested up to: 4.2.3
 Stable tag: trunk
 License: GPLv2 or later
 
