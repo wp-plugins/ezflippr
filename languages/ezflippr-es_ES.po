@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ezFlippr\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-16 12:45-0500\n"
-"PO-Revision-Date: 2015-06-16 12:47-0500\n"
+"POT-Creation-Date: 2015-08-05 16:12-0500\n"
+"PO-Revision-Date: 2015-08-05 16:13-0500\n"
 "Last-Translator: Tommy Lacroix <tlacroix@nuagelab.com>\n"
 "Language-Team: NuageLab <wordpress-plugins@nuagelab.com>\n"
 "Language: es\n"
@@ -73,7 +73,7 @@ msgstr ""
 "El plugin ezFlippr necesita ser establecido con el fin de acceder a sus "
 "libros animados. <a href=\"%1$s\">Hazlo ahora</a>."
 
-#: ../ezflippr.php:172 ../ezflippr.php:652 ../ezflippr.php:974
+#: ../ezflippr.php:172 ../ezflippr.php:658 ../ezflippr.php:980
 msgid ""
 "No communication methods supported by your PHP installation. Please install "
 "the php_curl extension, or enable allow_url_fopen and enable the php_openssl "
@@ -116,7 +116,7 @@ msgstr "La clave de acceso que ha ingresado no es válido"
 msgid "Flipbooks"
 msgstr "Libros animados"
 
-#: ../ezflippr.php:313 ../ezflippr.php:692
+#: ../ezflippr.php:313 ../ezflippr.php:698
 msgid "Flipbook"
 msgstr "Libro animado"
 
@@ -192,98 +192,98 @@ msgstr "Comprar"
 msgid "No ID"
 msgstr "No ID"
 
-#: ../ezflippr.php:523
+#: ../ezflippr.php:529
 msgid "Please enable JavaScript"
 msgstr "Por favor, active JavaScript"
 
-#: ../ezflippr.php:689
+#: ../ezflippr.php:695
 msgid "Select your flipbook"
 msgstr "Seleccione su libro animado"
 
-#: ../ezflippr.php:705
+#: ../ezflippr.php:711
 msgid "Adjust flipbook size"
 msgstr "Ajuste el tamaño del libro animado"
 
-#: ../ezflippr.php:707
+#: ../ezflippr.php:713
 msgid "Width"
 msgstr "Anchura"
 
-#: ../ezflippr.php:710 ../ezflippr.php:719
+#: ../ezflippr.php:716 ../ezflippr.php:725
 msgid "pixels"
 msgstr "píxeles"
 
-#: ../ezflippr.php:716
+#: ../ezflippr.php:722
 msgid "Height"
 msgstr "Altura"
 
-#: ../ezflippr.php:728
+#: ../ezflippr.php:734
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: ../ezflippr.php:731
+#: ../ezflippr.php:737
 msgid "Insert"
 msgstr "Insertar"
 
-#: ../ezflippr.php:734
+#: ../ezflippr.php:740
 msgid "Install a flipbook in the Flipbooks menu first."
 msgstr ""
 "Primero, tiene que instalar un libro animado en el menú Libros animados."
 
-#: ../ezflippr.php:735
+#: ../ezflippr.php:741
 msgid "Insert a flipbook"
 msgstr "Insertar un libro animado"
 
-#: ../ezflippr.php:736
+#: ../ezflippr.php:742
 msgid "Flipbook titled \"%title%\""
 msgstr "Libro animado titulado \"%title%\""
 
-#: ../ezflippr.php:765
+#: ../ezflippr.php:771
 msgid "Check your email, your access key has been sent!"
 msgstr "Revise su correo electrónico, su clave de acceso ha sido enviado!"
 
-#: ../ezflippr.php:794 ../ezflippr.php:829
+#: ../ezflippr.php:800 ../ezflippr.php:835
 msgid "Loading. Please wait..."
 msgstr "Cargando. Un momeno por favor..."
 
-#: ../ezflippr.php:1012
+#: ../ezflippr.php:1018
 #, php-format
 msgid "%d years ago"
 msgstr "hace %d años"
 
-#: ../ezflippr.php:1015
+#: ../ezflippr.php:1021
 #, php-format
 msgid "%d months ago"
 msgstr "hace %d meses"
 
-#: ../ezflippr.php:1016
+#: ../ezflippr.php:1022
 #, php-format
 msgid "%d weeks ago"
 msgstr "hace %d semanas"
 
-#: ../ezflippr.php:1017
+#: ../ezflippr.php:1023
 #, php-format
 msgid "%d days ago"
 msgstr "hace %d dias"
 
-#: ../ezflippr.php:1018
+#: ../ezflippr.php:1024
 #, php-format
 msgid "%d hours ago"
 msgstr "hace %d horas"
 
-#: ../ezflippr.php:1019
+#: ../ezflippr.php:1025
 #, php-format
 msgid "%d minutes ago"
 msgstr "hace %d minutos"
 
-#: ../ezflippr.php:1020
+#: ../ezflippr.php:1026
 msgid "moments ago"
 msgstr "have un momentito"
 
-#: ../ezflippr.php:1022
+#: ../ezflippr.php:1028
 msgid "Never"
 msgstr "Jamás"
 
-#: ../ezflippr.php:1024
+#: ../ezflippr.php:1030
 #, php-format
 msgid "Your flipbooks list was last refreshed %1$s."
 msgstr "Su lista de libros animados última actualización estaba %1$s."
@@ -342,7 +342,7 @@ msgid "Your ezFlippr plugin version: "
 msgstr "Su versión del plugin ezFlippr: "
 
 #: ../resources/admin/includes/contact.php:54
-#: ../resources/admin/includes/settings-validkey.php:42
+#: ../resources/admin/includes/settings-validkey.php:45
 msgid "Your access key: "
 msgstr "Su clave de acceso: "
 
@@ -416,7 +416,6 @@ msgid "Yes, and I remember it!"
 msgstr "Sí, y lo recuerdo!"
 
 #: ../resources/admin/includes/settings-invalidkey.php:41
-#, fuzzy
 msgid "Enter the email you created your flipbooks with"
 msgstr ""
 "Ingrese el correo electrónico que ha utilizado para crear sus libros animados"
@@ -430,7 +429,7 @@ msgid "Enter your access key"
 msgstr "Ingrese su clave de acceso"
 
 #: ../resources/admin/includes/settings-invalidkey.php:51
-#: ../resources/admin/includes/settings-validkey.php:44
+#: ../resources/admin/includes/settings-validkey.php:47
 msgid "Verify"
 msgstr "Verificar"
 
@@ -441,6 +440,10 @@ msgstr "Ajustes"
 #: ../resources/admin/includes/settings-validkey.php:29
 msgid "Refresh"
 msgstr "Actualizar"
+
+#: ../resources/admin/includes/settings-validkey.php:33
+msgid "Go to the list"
+msgstr "Ir a la lista"
 
 #~ msgid ""
 #~ "No communication methods supported. Install php_curl or enable "

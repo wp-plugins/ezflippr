@@ -28,7 +28,10 @@ if($this->notice){
 <?php echo wp_nonce_field($formAction, 'nonce'); ?>
 <input type="submit" name="ezflippr-refresh" id="ezflippr-refresh" class="button-primary" value="<?php _e('Refresh', __EZFLIPPR_PLUGIN_SLUG__);?>">
 <input type="hidden" name="action" value="<?php echo $formAction;?>">
-<p><?php echo $this->getLastUpdate();?></p>
+<p>
+	<?php echo $this->getLastUpdate();?>
+	<a href="edit.php?post_type=ezflippr_flipbook"><?php _e('Go to the list',__EZFLIPPR_PLUGIN_SLUG__); ?></a>.
+</p>
 </form>
 
 

@@ -135,11 +135,10 @@
 				var title;
 				if (id in ezflippr_books) {
 					title = $('#ezflippr-tinymce-flipbook .placeholder-title-template').val();
-					title.replace('%title%', ezflippr_books[id]);
+					title = title.replace("%title%", ezflippr_books[id]);
 				} else {
 					title = "(invalid flipbook?)";
 				}
-
 				var data = window.encodeURIComponent( attr );
 				content = window.encodeURIComponent( con );
 

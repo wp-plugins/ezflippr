@@ -2,7 +2,7 @@
 Contributors: nuagelab
 Tags: flipbook, administration
 Requires at least: 3.6
-Tested up to: 4.2.3
+Tested up to: 4.2.4
 Stable tag: trunk
 License: GPLv2 or later
 
@@ -87,6 +87,9 @@ CURL is installed by default with MAMP.
 This plugin is available in English, French and Spanish. If you want to help with translation in other languages, we'll be happy to hear from you.
 
 == Changelog ==
+= 1.1.14 =
+* Added link to jump to flipbooks list quickly
+
 = 1.1.13 =
 * Fixed bug with TinyMCE plugin
 
