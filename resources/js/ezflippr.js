@@ -30,7 +30,12 @@
 			$.ajax({
 				url:$(this).attr('href')+'&json=1',
 				success:function(data){
-					document.location.reload();
+					if (data.result) {
+						document.location.reload();
+					} else {
+						alert(data.error);
+						document.location.reload();
+					}
 				},
 				error:function(a,b,c){
 					alert(b);

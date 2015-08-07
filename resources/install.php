@@ -12,7 +12,7 @@ if ($_GET['action'] == 'reinstall') {
 
 if ((array_key_exists('json', $_GET)) && ($_GET['json'])) {
 	header('Content-Type: application/json');
-	echo json_encode(array('result'=>$res));
+	echo json_encode(array('result'=>($res===null), 'error'=>$res));
 } else {
 	wp_safe_redirect( admin_url( 'edit.php?post_type=ezflippr_flipbook' ) );
 }

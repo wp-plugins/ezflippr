@@ -87,6 +87,9 @@ CURL is installed by default with MAMP.
 This plugin is available in English, French and Spanish. If you want to help with translation in other languages, we'll be happy to hear from you.
 
 == Changelog ==
+= 1.1.15 =
+* Added error display
+
 = 1.1.14 =
 * Added link to jump to flipbooks list quickly
 

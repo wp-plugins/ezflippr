@@ -3,7 +3,7 @@
 * Plugin Name: ezFlippr
 * Plugin URI: http://www.nuagelab.com/wordpress-plugins/ezflippr
 * Description: Adds rich flipbooks made from PDF through ezFlippr.com
-* Version: 1.1.14
+* Version: 1.1.15
 * Author: NuageLab <wordpress-plugins@nuagelab.com>
 * Author URI: http://www.nuagelab.com/wordpress-plugins
 * License: GPL2
@@ -775,7 +775,7 @@ class ezFlippr {
     /**
      * Validate the access key provided by the user
      */
-	private function verifyAccessKey($key = NULL, $display=false)
+	private function verifyAccessKey($key=null, $display=false)
 	{
 		$update     = true;
 		$force      = false;
@@ -957,14 +957,14 @@ class ezFlippr {
 			                    curl_exec($ch);
 			                    $error = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 		                    }catch(Exception $e) {
-			                    die("Couldn't install: ".$e->getMessage());
+			                    return("Couldn't install: ".$e->getMessage());
 		                    }
 		                    if ($error >= 400) {
-			                    die("Couldn't install: ".$error.' on '.$file);
+			                    return("Couldn't install: ".$error.' on '.$file);
 		                    }
 		                    if (curl_errno($ch)) {
 			                    self::writeDebug("curl_errno ".curl_error($ch));
-			                    die("Couldn't install: ".curl_error($ch).' on '.$file);
+			                    return("Couldn't install: ".curl_error($ch).' on '.$file);
 		                    }
 		                    curl_close($ch);
 		                    fclose($fp);
@@ -977,7 +977,7 @@ class ezFlippr {
 	                    } else if (self::supportsHttpHandler()) {
 		                    file_put_contents($dir . DIRECTORY_SEPARATOR . $name, file_get_contents($file, false, $context));
 	                    } else {
-		                    die(__('No communication methods supported by your PHP installation. Please install the php_curl extension, or enable allow_url_fopen and enable the php_openssl extension.', __EZFLIPPR_PLUGIN_SLUG__));
+		                    return(__('No communication methods supported by your PHP installation. Please install the php_curl extension, or enable allow_url_fopen and enable the php_openssl extension.', __EZFLIPPR_PLUGIN_SLUG__));
 	                    }
 
                     }
@@ -989,12 +989,12 @@ class ezFlippr {
                     $post->post_status  = "publish";
                     wp_update_post($post);
                 }catch(Exception $e) {
-                    die("Couldn't install: ".$e->getMessage());
+                    return("Couldn't install: ".$e->getMessage());
                 }
             } else {
-	            die("Couldn't install: got HTTP code ".$http);
+	            return("Couldn't get file list: got HTTP code ".$http);
             }
-        }else{
+        } else {
             Util::cleanDir($dir);
             self::setPostMeta($postID, 'installed', 0);
             $post   = get_post($postID);
@@ -1002,7 +1002,9 @@ class ezFlippr {
             wp_update_post($post);
         }
 
-	    $ezFlippr->refreshList();
+	    $ezFlippr->refreshList(false);
+
+	    return null;
     }
 
     /****************************************** UI functions ******************************************/
